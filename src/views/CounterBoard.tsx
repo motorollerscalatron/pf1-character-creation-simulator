@@ -1,6 +1,9 @@
 // import "../../tailwind.output.css"
 
 import React, { FC, useState, useCallback } from "react";
+import Header from "../components/Header/header";
+import Footer from "../components/Footer/footer";
+import "../assets/tailwind.output.css";
 
 const CounterBoard: FC<{ initial?: number }> = ({
   initial = 10,
@@ -26,7 +29,10 @@ const CounterBoard: FC<{ initial?: number }> = ({
 
   const handleAmount = (atr: AttribType, increment: boolean) => {
     // MAX
-    if (count1 + count2 + count3 + count4 + count5 + count6 > pool - 1) {
+    if (
+      increment &&
+      count1 + count2 + count3 + count4 + count5 + count6 > pool - 1
+    ) {
       return;
     } else {
       switch (atr) {
@@ -67,7 +73,8 @@ const CounterBoard: FC<{ initial?: number }> = ({
   };
 
   return (
-    <div className="board">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+      <Header />
       <h1>Board</h1>
       <div>
         <p> Str {count1}</p>
@@ -99,6 +106,7 @@ const CounterBoard: FC<{ initial?: number }> = ({
         <button onClick={() => handleAmount("cha", true)}>+</button>
         <button onClick={() => handleAmount("cha", false)}>-</button>
       </div>
+      <Footer />
     </div>
   );
 };

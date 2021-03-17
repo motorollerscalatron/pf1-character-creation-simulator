@@ -19,6 +19,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "build:tailwind": "tailwindcss build src/assets/tailwind.css -o src/assets/tailwind.output.css",
+    "prestart": "npm run build:tailwind",
+    "prebuild": "npm run build:tailwind",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
