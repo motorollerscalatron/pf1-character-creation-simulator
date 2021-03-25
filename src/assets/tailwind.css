@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header {
+  background: blanchedalmond;
+  color: coral;
+  text-align: left;
+  padding: 25px 50px;
+  font-weight: 800;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
