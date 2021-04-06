@@ -1,16 +1,44 @@
-import React, { FC } from 'react';
+import React, { useState, FC, useCallback } from 'react';
 import '../assets/tailwind.output.css';
 import image01 from '../assets/01.png';
 import birdCage, { IBird, IBirdCage } from '../misc/default';
+import { setConstantValue, updateFunctionDeclaration } from 'typescript';
+import { getBirds } from '../birds';
 
 const DraftBoard: FC<{}> = ({}): JSX.Element => {
+  const uuid = (): string => {
+    return Math.random().toString(16).slice(2);
+  };
+
   console.log(birdCage);
 
   const birdData: IBirdCage = birdCage;
   console.log(birdData);
 
+  const addBird = useCallback(
+    (image: string) => {
+      const newBirdCage: IBirdCage = {
+        ...birdData,
+        birds: [
+          ...birdData.birds,
+          {
+            id: uuid(),
+            name: '',
+            image,
+            reservedBy: 2,
+          },
+        ],
+      };
+    },
+    [birdData]
+  );
+
   const handleAdd = async () => {
-    const isbn = prompt('ENter ISBN number');
+    const birdCode = prompt('Enter bird code');
+    if (birdCode) {
+      const imageUrl = await getBirds(birdCode);
+      console.log('image url', imageUrl);
+    }
   };
 
   const handleReset = () => {};
