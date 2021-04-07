@@ -11,3 +11,10 @@
   font-size: 1.4rem;
   text-transform: uppercase;
 }
+
+.drag-box {
+  padding: 5px;
+  background: rosybrown;
+  width: 200px;
+  cursor: move;
+}
