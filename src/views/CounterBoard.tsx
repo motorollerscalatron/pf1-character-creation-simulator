@@ -1,6 +1,7 @@
 import React, { FC, useState, useCallback, useEffect } from 'react';
 import Header from '../components/Header/header';
 import Footer from '../components/Footer/footer';
+import './CounterBoard.css';
 
 const CounterBoard: FC<{ initial?: number }> = ({
   initial = 10,
