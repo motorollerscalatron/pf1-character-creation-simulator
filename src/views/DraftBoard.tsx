@@ -1,6 +1,4 @@
 import React, { useState, FC, useCallback } from 'react';
-import '../assets/tailwind.output.css';
-import image01 from '../assets/01.png';
 import birdCage, { IBird, IBirdCage } from '../misc/default';
 import { setConstantValue, updateFunctionDeclaration } from 'typescript';
 import { getBirds } from '../birds';

@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
-import '../assets/tailwind.output.css';
+// import '../assets/tailwind.output.css';
+import './FormationBoard.css';
+
 import image01 from '../assets/01.png';
 import image02 from '../assets/02.png';
 import image03 from '../assets/03.png';
