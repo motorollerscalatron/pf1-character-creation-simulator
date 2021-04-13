@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .header {
   background: blanchedalmond;
   color: coral;
@@ -10,11 +6,4 @@
   font-weight: 800;
   font-size: 1.4rem;
   text-transform: uppercase;
-}
-
-.drag-box {
-  padding: 5px;
-  background: rosybrown;
-  width: 200px;
-  cursor: move;
 }

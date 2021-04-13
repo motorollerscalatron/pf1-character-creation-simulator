@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-// import '../assets/tailwind.output.css';
 import './FormationBoard.css';
 
 import image01 from '../assets/01.png';
