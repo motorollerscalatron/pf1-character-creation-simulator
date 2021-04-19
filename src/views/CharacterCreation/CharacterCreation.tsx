@@ -3,6 +3,13 @@ import { useStepper } from '../../hooks';
 import CharacterCreationSteps from './components/CharacterCreationSteps/CharacterCreationSteps';
 import Name from './components/steps/Name/Name';
 import Abilities from './components/steps/Abilities/Abilities';
+import Race from './components/steps/Race/Race';
+import Class from './components/steps/Class/Class';
+import Skills from './components/steps/Skills/Skills';
+import Feats from './components/steps/Feats/Feats';
+import Equipment from './components/steps/Equipment/Equipment';
+import Details from './components/steps/Details/Details';
+
 const { useState } = React;
 export interface ICharacterCreationProps {}
 
@@ -13,6 +20,12 @@ type ComponentsMap = {
 const componentsMap: ComponentsMap = {
   1: Name,
   2: Abilities,
+  3: Race,
+  4: Class,
+  5: Skills,
+  6: Feats,
+  7: Equipment,
+  8: Details,
 };
 
 interface CharacterGenerationState {
