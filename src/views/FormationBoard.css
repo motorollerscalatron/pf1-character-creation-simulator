@@ -1,0 +1,6 @@
+.drag-box {
+  padding: 5px;
+  background: rosybrown;
+  width: 200px;
+  cursor: move;
+}

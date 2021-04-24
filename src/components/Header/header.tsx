@@ -1,5 +1,5 @@
-import React from "react";
-import "../../assets/tailwind.output.css";
+import React from 'react';
+import './header.css';
 
 function Header() {
   return <div className="header">Character creation</div>;

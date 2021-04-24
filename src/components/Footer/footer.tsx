@@ -1,6 +1,5 @@
-import React from "react";
-import "../../assets/tailwind.output.css";
-import image1 from "../../assets/autumndecay_yellow_800.jpg";
+import React from 'react';
+import image1 from '../../assets/autumndecay_yellow_800.jpg';
 
 function Footer() {
   return (
