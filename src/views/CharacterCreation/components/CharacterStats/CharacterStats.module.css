@@ -1,0 +1,12 @@
+.abilityHeader {
+  @apply border-solid border-t border-b mb-2;
+}
+
+.previewAbilities {
+  @apply hidden md:flex flex-wrap justify-between text-left mb-2;
+}
+
+.previewAbility {
+  flex-basis: 47%;
+  @apply mb-1;
+}

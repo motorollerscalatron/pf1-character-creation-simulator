@@ -50,6 +50,33 @@ const initialState: ICharacterGenerationState = {
     intelligence: 10,
     wisdom: 10,
     charisma: 10,
+    /*
+
+     strength: {
+      value: 10,
+      mod: 0,
+    },
+    dexterity: {
+      value: 10,
+      mod: 0,
+    },
+    constitution: {
+      value: 10,
+      mod: 0,
+    },
+    intelligence: {
+      value: 10,
+      mod: 0,
+    },
+    wisdom: {
+      value: 10,
+      mod: 0,
+    },
+    charisma: {
+      value: 10,
+      mod: 0,
+    },
+    */
   },
   race: '',
   abilityScore: '',
@@ -58,7 +85,7 @@ const initialState: ICharacterGenerationState = {
 };
 
 export default function CharacterCreation(props: ICharacterCreationProps) {
-  const { step, nextStep, prevStep, setStep } = useStepper(1, 8);
+  const { step, nextStep, prevStep, setStep } = useStepper(2, 8);
   const [characterState, updateCharacterState] = useImmer(initialState);
 
   const CurrentComponent = componentsMap[step];

@@ -1,3 +1,11 @@
+export type Abilities =
+  | 'Strength'
+  | 'Dexterity'
+  | 'Constitution'
+  | 'Intelligence'
+  | 'Wisdom'
+  | 'Charisma';
+
 export interface ICharacterGenerationState {
   name: string;
   gender: 'Male' | 'Female' | 'Other' | '';
@@ -16,14 +24,7 @@ export interface ICharacterGenerationState {
     charisma: number;
   };
   race: 'Human' | 'Half-Elf' | 'Elf' | 'Half-Orc' | 'Dwarf' | 'Halfling' | '';
-  abilityScore:
-    | 'Strength'
-    | 'Dexterity'
-    | 'Constitution'
-    | 'Intelligence'
-    | 'Wisdom'
-    | 'Charisma'
-    | '';
+  abilityScore: Abilities | '';
   bonusLanguage: string;
   class:
     | 'Fighter'
