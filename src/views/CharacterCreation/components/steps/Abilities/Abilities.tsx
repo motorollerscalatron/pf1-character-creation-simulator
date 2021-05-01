@@ -13,6 +13,12 @@ export default function Abilities(props: IAbilitiesProps) {
     <div>
       <h1>Abilities</h1>
       <div>{JSON.stringify(characterState)}</div>
+      <div className="text-center">Points Spent 0 / 15</div>
+      <div className="shadow">
+        <div className="row">
+          <table className="ability-controls"></table>
+        </div>
+      </div>
     </div>
   );
 }
