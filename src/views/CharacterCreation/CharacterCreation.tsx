@@ -13,6 +13,8 @@ import CharacterStats from './components/CharacterStats/CharacterStats';
 import { useImmer } from 'use-immer';
 import { ICharacterGenerationState } from './characterCreation.types';
 import { nameStepValidator } from './components/steps/Name/nameStepValidator';
+import { abilityStepValidator } from './components/steps/Abilities/abilityStepValidator';
+
 const { useState } = React;
 export interface ICharacterCreationProps {}
 
@@ -23,12 +25,14 @@ type ComponentsMap = {
 const componentsMap: ComponentsMap = {
   1: Name,
   2: Abilities,
-  /*3: Race,
+  3: Race,
+  /*
   4: Class,
   5: Skills,
   6: Feats,
   7: Equipment,
-  8: Details,*/
+  8: Details,
+  */
 };
 
 type StepValidators = {
@@ -37,6 +41,7 @@ type StepValidators = {
 
 const stepValidators: StepValidators = {
   1: nameStepValidator,
+  2: abilityStepValidator,
 };
 
 const initialState: ICharacterGenerationState = {

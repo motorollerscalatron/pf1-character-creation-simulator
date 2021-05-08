@@ -40,6 +40,10 @@ export default function Abilities(props: IAbilitiesProps) {
     setPointsSpent((num) => num + costDifference);
   };
 
+  // TODO: add a graphical bar
+  // TODO: apply a plus sign on mod
+  // TODO: show information on ability the cursor points to
+
   return (
     <div>
       <h1>Abilities</h1>

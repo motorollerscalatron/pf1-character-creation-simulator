@@ -38,7 +38,7 @@ function CharacterCreationSteps(props: ICharacterCreationStepsProps) {
                   isActive ? activeStyle : inactiveStyle
                 }`}
               >
-                {idx + 1}
+                {props.currentStep > idx + 1 ? '✓' : idx + 1}
               </div>
               <div className={isActive ? 'text-red-900' : 'text-gray-900'}>
                 {label}

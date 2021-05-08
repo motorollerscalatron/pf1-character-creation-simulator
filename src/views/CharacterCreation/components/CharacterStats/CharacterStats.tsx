@@ -27,8 +27,12 @@ export default function CharacterStats(props: ICharacterStatsProps) {
 
   return (
     <div className="preview-column shadow-md p-6 text-left">
-      <div id="character-preview" className="text-sm">
-        <h3 className="ntm">{characterState.class}</h3>
+      <div
+        id="character-preview"
+        className="text-sm font-sans leading-tight .leading-6"
+      >
+        <h3 className="text-xl">{characterState.name}</h3>
+        <strong>{characterState.race}</strong>
         <h5 className={styles.abilityHeader}>Defense</h5>
         <div className="space-y-1 mb-3">
           <div>

@@ -25,6 +25,9 @@ module.exports = {
         '410px': '410px',
       },
     },
+    fontFamily: {
+      sans: ['Titillium Web', 'Helvetica', 'Arial', 'sans-serif'],
+    },
   },
   variants: {
     extend: {},
