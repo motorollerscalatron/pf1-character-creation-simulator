@@ -1,0 +1,4 @@
+.previewAbility {
+  flex-basis: 47%;
+  @apply mb-1;
+}

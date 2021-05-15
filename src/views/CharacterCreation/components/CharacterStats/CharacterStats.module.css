@@ -5,8 +5,3 @@
 .previewAbilities {
   @apply hidden md:flex flex-wrap justify-between text-left mb-2;
 }
-
-.previewAbility {
-  flex-basis: 47%;
-  @apply mb-1;
-}

@@ -1,29 +1,51 @@
 import React from 'react';
-import { ICharacterGenerationState } from '../../characterCreation.types';
+import {
+  Abilities,
+  Ability,
+  AbilityLower,
+  AbilityValue,
+  BonusAbilityScore,
+  ICharacterGenerationState,
+} from '../../characterCreation.types';
 import styles from './CharacterStats.module.css';
 import { calculateHealthPoints } from './helpers/abilities';
 import clsx from 'clsx';
+import { AbilityPreview } from './components/AbilityPreview';
+import { capitalize } from '../../../../helpers';
 interface ICharacterStatsProps {
   characterState: ICharacterGenerationState;
 }
 
-/*
+const withBonusAbilityScore = (
+  ability: AbilityLower,
+  abilityValue: AbilityValue,
+  bonusAbilityScore: BonusAbilityScore
+) => {
+  if (!bonusAbilityScore.ability || ability !== bonusAbilityScore.ability)
+    return abilityValue;
 
-HP = 6 + Math.floor((abilities.constitution / 2))
-
-*/
+  return {
+    value: abilityValue.value + bonusAbilityScore.value,
+    mod: abilityValue.mod + bonusAbilityScore.mod,
+  };
+};
 
 export default function CharacterStats(props: ICharacterStatsProps) {
   const { characterState } = props;
-  const { abilities } = characterState;
-  const {
-    strength,
-    dexterity,
-    constitution,
-    intelligence,
-    wisdom,
-    charisma,
-  } = abilities;
+  const { abilities, bonusAbilityScore } = characterState;
+
+  const previewAbilities: [string, AbilityValue][] = Object.entries(
+    abilities
+  ).map(([ability, abilityValue]) => {
+    return [
+      capitalize(ability.slice(0, 3)),
+      withBonusAbilityScore(
+        ability as AbilityLower,
+        abilityValue,
+        bonusAbilityScore
+      ),
+    ];
+  });
 
   return (
     <div className="preview-column shadow-md p-6 text-left">
@@ -77,24 +99,15 @@ export default function CharacterStats(props: ICharacterStatsProps) {
         </div>
         <h5 className={styles.abilityHeader}>Abilities</h5>
         <div className={clsx(styles.previewAbilities)}>
-          <div className={styles.previewAbility}>
-            <strong>Str:</strong> {strength} (0)
-          </div>
-          <div className={styles.previewAbility}>
-            <strong>Int:</strong> {intelligence} (0)
-          </div>
-          <div className={styles.previewAbility}>
-            <strong>Dex:</strong> {dexterity} (0)
-          </div>
-          <div className={styles.previewAbility}>
-            <strong>Wis:</strong> {wisdom} (0)
-          </div>
-          <div className={styles.previewAbility}>
-            <strong>Con:</strong> {constitution} (0)
-          </div>
-          <div className={styles.previewAbility}>
-            <strong>Cha:</strong> {charisma} (0)
-          </div>
+          {previewAbilities.map(([label, abilityValue]) => {
+            return (
+              <AbilityPreview
+                label={label}
+                ability={abilityValue}
+                key={label}
+              />
+            );
+          })}
         </div>
         <h5 className={styles.abilityHeader}>Feats</h5>
       </div>

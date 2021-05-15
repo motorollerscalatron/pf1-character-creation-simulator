@@ -49,12 +49,12 @@ const initialState: ICharacterGenerationState = {
   gender: '',
   campaignType: 'Standard Fantasy',
   abilities: {
-    strength: 10,
-    dexterity: 10,
-    constitution: 10,
-    intelligence: 10,
-    wisdom: 10,
-    charisma: 10,
+    strength: { value: 10, mod: 0 },
+    dexterity: { value: 10, mod: 0 },
+    constitution: { value: 10, mod: 0 },
+    intelligence: { value: 10, mod: 0 },
+    wisdom: { value: 10, mod: 0 },
+    charisma: { value: 10, mod: 0 },
     /*
 
      strength: {
@@ -84,15 +84,19 @@ const initialState: ICharacterGenerationState = {
     */
   },
   race: '',
-  abilityScore: '',
+  bonusAbilityScore: {
+    ability: '',
+    value: 0,
+    mod: 0,
+  },
   bonusLanguage: '',
   class: '',
 };
 
 export default function CharacterCreation(props: ICharacterCreationProps) {
-  const { step, nextStep, prevStep, setStep } = useStepper(2, 8);
+  const { step, nextStep, prevStep, setStep } = useStepper(3, 8);
   const [characterState, updateCharacterState] = useImmer(initialState);
-
+  console.log({ characterState });
   const CurrentComponent = componentsMap[step];
 
   const onNextStep = () => {

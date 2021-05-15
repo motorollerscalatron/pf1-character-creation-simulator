@@ -8,7 +8,7 @@ import IntelligenceDescription from './components/descriptions/IntelligenceDescr
 import WisdomDescription from './components/descriptions/WisdomDescription';
 import CharismaDescription from './components/descriptions/CharismaDescription';
 import AbilityControlBar from './components/controlBar/AbilityControlBar';
-import { Abilities as AbilityType } from '../../../characterCreation.types';
+import { Ability } from '../../../characterCreation.types';
 
 export interface IAbilitiesProps {
   characterState: ICharacterGenerationState;
@@ -20,22 +20,17 @@ export default function Abilities(props: IAbilitiesProps) {
   const { abilities } = characterState;
   const [pointsSpent, setPointsSpent] = useState(0);
 
-  const incrementAbility = (
-    ability: Lowercase<AbilityType>,
+  const updateAbility = (
+    ability: Lowercase<Ability>,
+    value: number,
+    mod: number,
     costDifference: number
   ) => {
     updateCharacterState((draft) => {
-      draft.abilities[ability]++;
-    });
-    setPointsSpent((num) => num + costDifference);
-  };
-
-  const decrementAbility = (
-    ability: Lowercase<AbilityType>,
-    costDifference: number
-  ) => {
-    updateCharacterState((draft) => {
-      draft.abilities[ability]--;
+      draft.abilities[ability] = {
+        value,
+        mod,
+      };
     });
     setPointsSpent((num) => num + costDifference);
   };
@@ -63,39 +58,33 @@ export default function Abilities(props: IAbilitiesProps) {
             <tbody>
               <AbilityControlBar
                 ability="Strength"
-                value={abilities.strength}
-                incrementAbility={incrementAbility}
-                decrementAbility={decrementAbility}
+                value={abilities.strength.value}
+                updateAbility={updateAbility}
               />
               <AbilityControlBar
                 ability="Dexterity"
-                value={abilities.dexterity}
-                incrementAbility={incrementAbility}
-                decrementAbility={decrementAbility}
+                value={abilities.dexterity.value}
+                updateAbility={updateAbility}
               />
               <AbilityControlBar
                 ability="Constitution"
-                value={abilities.constitution}
-                incrementAbility={incrementAbility}
-                decrementAbility={decrementAbility}
+                value={abilities.constitution.value}
+                updateAbility={updateAbility}
               />
               <AbilityControlBar
                 ability="Intelligence"
-                value={abilities.intelligence}
-                incrementAbility={incrementAbility}
-                decrementAbility={decrementAbility}
+                value={abilities.intelligence.value}
+                updateAbility={updateAbility}
               />
               <AbilityControlBar
                 ability="Wisdom"
-                value={abilities.wisdom}
-                incrementAbility={incrementAbility}
-                decrementAbility={decrementAbility}
+                value={abilities.wisdom.value}
+                updateAbility={updateAbility}
               />
               <AbilityControlBar
                 ability="Charisma"
-                value={abilities.charisma}
-                incrementAbility={incrementAbility}
-                decrementAbility={decrementAbility}
+                value={abilities.charisma.value}
+                updateAbility={updateAbility}
               />
               {/*
                 <h4>strength</h4>

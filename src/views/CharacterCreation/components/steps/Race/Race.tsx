@@ -1,6 +1,24 @@
 import * as React from 'react';
 import { Updater } from 'use-immer';
-import { ICharacterGenerationState } from '../../../characterCreation.types';
+import {
+  ICharacterGenerationState,
+  Race,
+} from '../../../characterCreation.types';
+import * as races from './components/races';
+import { AbilitiesMapItem } from './components/SelectAbilityScore/SelectAbilityScore';
+
+console.log({ races });
+
+type RaceMap = Readonly<Record<Race, typeof races[keyof typeof races]>>;
+
+const raceMap: Omit<RaceMap, ''> = {
+  Human: races.Human,
+  Elf: races.Elf,
+  Halfling: races.Halfling,
+  Dwarf: races.Dwarf,
+  'Half-Elf': races.HalfElf,
+  'Half-Orc': races.HalfOrc,
+};
 
 export interface ICharacterRaceProps {
   characterState: ICharacterGenerationState;
@@ -17,6 +35,12 @@ export default function CharacterRace(props: ICharacterRaceProps) {
       draft.race = value;
     });
   };
+
+  const setBonusAbilityScore = (item: AbilitiesMapItem) => {
+    console.log('on change', item);
+  };
+
+  const SelectedRaceContent = race ? raceMap[race] : null;
 
   return (
     <div>
@@ -75,6 +99,9 @@ export default function CharacterRace(props: ICharacterRaceProps) {
           <label htmlFor="select-race-halfling">Halfling</label>
         </div>
       </div>
+      {SelectedRaceContent ? (
+        <SelectedRaceContent updateCharacterState={updateCharacterState} />
+      ) : null}
     </div>
   );
 }
