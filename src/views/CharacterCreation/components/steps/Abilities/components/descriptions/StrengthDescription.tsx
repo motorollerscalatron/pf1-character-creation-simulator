@@ -5,25 +5,19 @@ export interface ICharismaDescriptionProps {}
 export default function StrengthDescription(props: ICharismaDescriptionProps) {
   return (
     <div className="ability-description">
-      <h2>Charisma</h2>{' '}
+      <h2>Strength</h2>{' '}
       <p>
-        Charisma measures a character's personality, personal magnetism, ability
-        to lead, and appearance. It is essential for sorcerers as it affects
-        their spells in many ways. Clerics will also need it, since it affects
-        their ability to channel energy.{' '}
+        Strength measures muscle and physical power. This ability is important
+        for those who engage in hand-to-hand combat, such as fighters,
+        barbarians, and paladins. Strength also sets the maximum amount of
+        weight your character can carry.{' '}
       </p>{' '}
-      <p>You apply your character's Charisma modifier to:</p>{' '}
+      <p>You apply your character's Strength modifier to:</p>{' '}
       <ul>
-        <li>Checks that represent attempts to influence others.</li>{' '}
-        <li>The difficulty to resist your sorcerer spells</li>{' '}
-        <li>
-          The difficulty to resist your cleric channel energy ability in attempt
-          to harm undead foes
-        </li>{' '}
-        <li>
-          Bluff, Diplomacy, Disguise, Handle Animal, Intimidate, Perform, and
-          Use Magic Device checks.
-        </li>
+        <li>Melee attack rolls</li>{' '}
+        <li>Damage rolls when using a melee or thrown weapon</li>{' '}
+        <li>Climb, Swim, and Strength checks</li>{' '}
+        <li>Strength checks (for breaking down doors and the like)</li>
       </ul>
     </div>
   );
