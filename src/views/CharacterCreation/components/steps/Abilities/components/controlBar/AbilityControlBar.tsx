@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { Abilities } from '../../../../../characterCreation.types';
-type AbilityKey = Lowercase<Abilities>;
+import { Ability } from '../../../../../characterCreation.types';
+type AbilityKey = Lowercase<Ability>;
 export interface IAbilitityControlBarProps {
-  ability: Abilities;
+  ability: Ability;
   value: number;
-  incrementAbility: (ability: AbilityKey, costDifference: number) => void;
-  decrementAbility: (ability: AbilityKey, costDifference: number) => void;
+  updateAbility: (
+    ability: AbilityKey,
+    value: number,
+    mod: number,
+    costDifference: number
+  ) => void;
 }
 
 /*
@@ -32,13 +36,13 @@ const abilitiesValuesConfig: AbilitiesValuesConfig = {
   9: [-1, -1],
   10: [0, 0],
   11: [0, 1],
-  12: [+1, 2],
-  13: [+1, 3],
-  14: [+2, 5],
-  15: [+2, 7],
-  16: [+3, 10],
-  17: [+3, 13],
-  18: [+4, 17],
+  12: [1, 2],
+  13: [1, 3],
+  14: [2, 5],
+  15: [2, 7],
+  16: [3, 10],
+  17: [3, 13],
+  18: [4, 17],
 };
 
 /*
@@ -50,21 +54,31 @@ take the current cost and add the previous cost to it
 
 */
 export default function AbilitityControlBar(props: IAbilitityControlBarProps) {
-  const { ability, value, incrementAbility, decrementAbility } = props;
+  const { ability, value, updateAbility } = props;
 
   const [mod, cost] = abilitiesValuesConfig[value];
 
   const onDecrement = () => {
-    const [_, prevCost] = abilitiesValuesConfig[value - 1];
+    const [mod, prevCost] = abilitiesValuesConfig[value - 1];
     const costDiff = prevCost - cost;
     console.log({ costDiff });
-    decrementAbility(ability.toLowerCase() as AbilityKey, costDiff);
+    updateAbility(
+      ability.toLowerCase() as AbilityKey,
+      value - 1,
+      mod,
+      costDiff
+    );
   };
 
   const onIncrement = () => {
-    const [_, nextCost] = abilitiesValuesConfig[value + 1];
+    const [mod, nextCost] = abilitiesValuesConfig[value + 1];
     const costDiff = nextCost - cost;
-    incrementAbility(ability.toLowerCase() as AbilityKey, costDiff);
+    updateAbility(
+      ability.toLowerCase() as AbilityKey,
+      value + 1,
+      mod,
+      costDiff
+    );
   };
 
   return (
