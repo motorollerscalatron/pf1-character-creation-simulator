@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   Ability,
   AbilityLower,
+  ICharacterGenerationState,
   UpdateCharacterState,
 } from '../../../../../characterCreation.types';
 import { AbilityPreview } from '../../../../CharacterStats/components/AbilityPreview';
@@ -55,19 +56,22 @@ const abilitiesMap: AbilitiesMapItem[] = [
 ];
 
 export interface ISelectAbilityScoreProps {
+  characterState: ICharacterGenerationState;
   updateCharacterState: UpdateCharacterState;
 }
 
 export function SelectAbilityScore(props: ISelectAbilityScoreProps) {
-  const { updateCharacterState } = props;
+  const { characterState, updateCharacterState } = props;
   const setBonusAbilityScore = (item: AbilitiesMapItem) => {
     const { ability, bonus, mod } = item;
     updateCharacterState((draft) => {
-      draft.bonusAbilityScore = {
-        ability,
-        value: bonus,
-        mod,
-      };
+      draft.bonusAbilityScore = [
+        {
+          ability,
+          value: bonus,
+          mod,
+        },
+      ];
     });
   };
 
@@ -84,6 +88,9 @@ export function SelectAbilityScore(props: ISelectAbilityScoreProps) {
               name="abilityScore"
               id={`select-${ability}`}
               value={ability}
+              checked={
+                ability === characterState.bonusAbilityScore?.[0]?.ability
+              }
               onChange={(e) => setBonusAbilityScore(item)}
             />
           </div>

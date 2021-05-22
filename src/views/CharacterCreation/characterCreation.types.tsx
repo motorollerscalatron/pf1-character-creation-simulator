@@ -48,6 +48,8 @@ export type BonusAbilityScore = {
   }
   */
 
+export type Languages = Omit<Record<Race, string[]>, ''>;
+
 export interface ICharacterGenerationState {
   name: string;
   gender: 'Male' | 'Female' | 'Other' | '';
@@ -59,7 +61,7 @@ export interface ICharacterGenerationState {
     | '';
   abilities: Abilities;
   race: Race;
-  bonusAbilityScore: BonusAbilityScore;
+  bonusAbilityScore: BonusAbilityScore[];
   bonusLanguage: string;
   class:
     | 'Fighter'

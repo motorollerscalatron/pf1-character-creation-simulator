@@ -81,14 +81,35 @@ const initialState: ICharacterGenerationState = {
       value: 10,
       mod: 0,
     },
+
+
+    [
+    {
+      ability: 'Constitution',
+      value: 2,
+      mod: 1,
+    },
+    {
+      ability: 'Wisdom',
+      value: 2,
+      mod: 1,
+    },
+    {
+      ability: 'Charisma',
+      value: -2,
+      mod: -1,
+    },
+  ]
     */
   },
   race: '',
-  bonusAbilityScore: {
-    ability: '',
-    value: 0,
-    mod: 0,
-  },
+  bonusAbilityScore: [
+    {
+      ability: '',
+      value: 0,
+      mod: 0,
+    },
+  ],
   bonusLanguage: '',
   class: '',
 };

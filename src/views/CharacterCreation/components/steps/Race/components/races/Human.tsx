@@ -1,17 +1,24 @@
 import * as React from 'react';
-import { UpdateCharacterState } from '../../../../../characterCreation.types';
+import {
+  ICharacterGenerationState,
+  UpdateCharacterState,
+} from '../../../../../characterCreation.types';
 import { SelectAbilityScore } from '../SelectAbilityScore/SelectAbilityScore';
 
 export interface IHumanProps {
+  characterState: ICharacterGenerationState;
   updateCharacterState: UpdateCharacterState;
 }
 
 export function Human(props: IHumanProps) {
-  const { updateCharacterState } = props;
+  const { characterState, updateCharacterState } = props;
   return (
     <div>
       <h2>Human</h2>
-      <SelectAbilityScore updateCharacterState={updateCharacterState} />
+      <SelectAbilityScore
+        characterState={characterState}
+        updateCharacterState={updateCharacterState}
+      />
     </div>
   );
 }

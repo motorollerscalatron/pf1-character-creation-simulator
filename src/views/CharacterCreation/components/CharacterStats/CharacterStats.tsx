@@ -19,8 +19,9 @@ interface ICharacterStatsProps {
 const withBonusAbilityScore = (
   ability: AbilityLower,
   abilityValue: AbilityValue,
-  bonusAbilityScore: BonusAbilityScore
+  bonusAbilityScore?: BonusAbilityScore
 ) => {
+  if (!bonusAbilityScore) return abilityValue;
   if (!bonusAbilityScore.ability || ability !== bonusAbilityScore.ability)
     return abilityValue;
 
@@ -42,7 +43,7 @@ export default function CharacterStats(props: ICharacterStatsProps) {
       withBonusAbilityScore(
         ability as AbilityLower,
         abilityValue,
-        bonusAbilityScore
+        bonusAbilityScore?.find((item) => item.ability === ability)
       ),
     ];
   });
