@@ -44,9 +44,19 @@ export default function SelectBonusLanguages(
   return race && numLanguages ? (
     <div>
       <h4>Select bonus {numLanguages} languages.</h4>
-      {languages[race].map((language) => {
-        return <div key={language}>{language}</div>;
-      })}
+      <div className="grid grid-cols-2 md:grid-cols-3">
+        {languages[race].map((language) => {
+          return (
+            <div key={language}>
+              <input
+                type="checkbox"
+                className="checked:bg-blue-600 checked:border-transparent"
+              />
+              {language}
+            </div>
+          );
+        })}
+      </div>
     </div>
   ) : null;
 }
