@@ -5,24 +5,22 @@ export interface ICharismaDescriptionProps {}
 export default function DexterityDescription(props: ICharismaDescriptionProps) {
   return (
     <div className="ability-description">
-      <h2>Charisma</h2>{' '}
+      <h2>Dexterity</h2>{' '}
       <p>
-        Charisma measures a character's personality, personal magnetism, ability
-        to lead, and appearance. It is essential for sorcerers as it affects
-        their spells in many ways. Clerics will also need it, since it affects
-        their ability to channel energy.{' '}
+        Dexterity measures agility, reflexes, and balance. This ability is the
+        most important one for rogues and rangers, but it's also useful for
+        characters who wear light or medium armor or no armor at all such as
+        wizards and sorcerers. This ability is vital for characters seeking to
+        excel with ranged weapons.{' '}
       </p>{' '}
-      <p>You apply your character's Charisma modifier to:</p>{' '}
+      <p>You apply your character's Dexterity modifier to:</p>{' '}
       <ul>
-        <li>Checks that represent attempts to influence others.</li>{' '}
-        <li>The difficulty to resist your sorcerer spells</li>{' '}
+        <li>Ranged attack rolls</li>{' '}
+        <li>Armor class (Ability to avoid attacks)</li>{' '}
+        <li>Reflex saving throws (for quickly avoiding hazards)</li>{' '}
         <li>
-          The difficulty to resist your cleric channel energy ability in attempt
-          to harm undead foes
-        </li>{' '}
-        <li>
-          Bluff, Diplomacy, Disguise, Handle Animal, Intimidate, Perform, and
-          Use Magic Device checks.
+          Acrobatics, Disable Device, Escape Artist, Fly, Ride, Sleight of Hand,
+          and Stealth checks
         </li>
       </ul>
     </div>

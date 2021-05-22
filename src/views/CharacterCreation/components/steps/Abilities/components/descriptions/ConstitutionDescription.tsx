@@ -7,24 +7,18 @@ export default function ConstitutionDescription(
 ) {
   return (
     <div className="ability-description">
-      <h2>Charisma</h2>{' '}
+      <h2>Constitution</h2>{' '}
       <p>
-        Charisma measures a character's personality, personal magnetism, ability
-        to lead, and appearance. It is essential for sorcerers as it affects
-        their spells in many ways. Clerics will also need it, since it affects
-        their ability to channel energy.{' '}
+        Constitution represents your character's health and stamina. A
+        Constitution bonus increases a character's hit points, so the ability is
+        important for all characters.{' '}
       </p>{' '}
-      <p>You apply your character's Charisma modifier to:</p>{' '}
+      <p>You apply your character's Constitution modifier to:</p>{' '}
       <ul>
-        <li>Checks that represent attempts to influence others.</li>{' '}
-        <li>The difficulty to resist your sorcerer spells</li>{' '}
+        <li>The number of hitpoints gained at each level</li>{' '}
         <li>
-          The difficulty to resist your cleric channel energy ability in attempt
-          to harm undead foes
-        </li>{' '}
-        <li>
-          Bluff, Diplomacy, Disguise, Handle Animal, Intimidate, Perform, and
-          Use Magic Device checks.
+          Fortitude saving throws (for resisting poison, disease, and similar
+          threats)
         </li>
       </ul>
     </div>

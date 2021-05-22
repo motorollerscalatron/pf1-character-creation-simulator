@@ -9,6 +9,7 @@ import WisdomDescription from './components/descriptions/WisdomDescription';
 import CharismaDescription from './components/descriptions/CharismaDescription';
 import AbilityControlBar from './components/controlBar/AbilityControlBar';
 import { Ability } from '../../../characterCreation.types';
+import styles from './Abilities.module.css';
 
 export interface IAbilitiesProps {
   characterState: ICharacterGenerationState;
@@ -99,7 +100,7 @@ export default function Abilities(props: IAbilitiesProps) {
                 */}
             </tbody>
           </table>
-          <div className="ability-descriptions">
+          <div className={styles.abilityDescriptions}>
             <StrengthDescription />
             <DexterityDescription />
             <ConstitutionDescription />

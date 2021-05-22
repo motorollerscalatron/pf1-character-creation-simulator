@@ -5,25 +5,22 @@ export interface ICharismaDescriptionProps {}
 export default function WisdomDescription(props: ICharismaDescriptionProps) {
   return (
     <div className="ability-description">
-      <h2>Charisma</h2>{' '}
+      <h2>Wisdom</h2>{' '}
       <p>
-        Charisma measures a character's personality, personal magnetism, ability
-        to lead, and appearance. It is essential for sorcerers as it affects
-        their spells in many ways. Clerics will also need it, since it affects
-        their ability to channel energy.{' '}
-      </p>{' '}
-      <p>You apply your character's Charisma modifier to:</p>{' '}
+        Wisdom describes a character's willpower, common sense, awareness, and
+        intuition. Wisdom is the most important ability for divine spellcasters
+        like Clerics and Druids. But any character that wants to have acute
+        senses, should have a high score in Wisdom.
+      </p>
+      <p>You apply your character's Wisdom modifier to:</p>{' '}
       <ul>
-        <li>Checks that represent attempts to influence others.</li>{' '}
-        <li>The difficulty to resist your sorcerer spells</li>{' '}
         <li>
-          The difficulty to resist your cleric channel energy ability in attempt
-          to harm undead foes
+          Will saving throws (for negating the effects of compulsions, charms,
+          and other spells)
         </li>{' '}
-        <li>
-          Bluff, Diplomacy, Disguise, Handle Animal, Intimidate, Perform, and
-          Use Magic Device checks.
-        </li>
+        <li>The difficulty to resist your divine spells</li>
+        <li></li>
+        <li>Heal, Perception, Profession, Sense Motive, and Survival checks</li>
       </ul>
     </div>
   );

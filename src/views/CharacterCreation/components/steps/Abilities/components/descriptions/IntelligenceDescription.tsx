@@ -7,25 +7,19 @@ export default function IntelligenceDescription(
 ) {
   return (
     <div className="ability-description">
-      <h2>Charisma</h2>{' '}
+      <h2>Intelligence</h2>{' '}
       <p>
-        Charisma measures a character's personality, personal magnetism, ability
-        to lead, and appearance. It is essential for sorcerers as it affects
-        their spells in many ways. Clerics will also need it, since it affects
-        their ability to channel energy.{' '}
+        Intelligence determines how well your character learns and reasons. This
+        ability is essential for wizards because it affects their spellcasting
+        ability in many ways.{' '}
       </p>{' '}
-      <p>You apply your character's Charisma modifier to:</p>{' '}
+      <p>You apply your character's Intelligence modifier to:</p>{' '}
       <ul>
-        <li>Checks that represent attempts to influence others.</li>{' '}
-        <li>The difficulty to resist your sorcerer spells</li>{' '}
-        <li>
-          The difficulty to resist your cleric channel energy ability in attempt
-          to harm undead foes
-        </li>{' '}
-        <li>
-          Bluff, Diplomacy, Disguise, Handle Animal, Intimidate, Perform, and
-          Use Magic Device checks.
-        </li>
+        <li>The number of languages your character knows</li>{' '}
+        <li>The number of skill points gained each level</li>{' '}
+        <li>The difficulty to resist your wizard spells</li>
+        <li></li>
+        <li>Appraise, Craft, Knowledge, Linguistics, and Spellcraft checks</li>
       </ul>
     </div>
   );

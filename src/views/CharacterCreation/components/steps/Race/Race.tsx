@@ -6,10 +6,13 @@ import {
 } from '../../../characterCreation.types';
 import * as races from './components/races';
 import { AbilitiesMapItem } from './components/SelectAbilityScore/SelectAbilityScore';
-
+import SelectBonusLanguages from './components/races/SelectBonusLanguages/SelectBonusLanguages';
+import {
+  RaceMap,
+  BonusAbilityMap,
+  RaceWithFixedBonusAbilities,
+} from './Race.types';
 console.log({ races });
-
-type RaceMap = Readonly<Record<Race, typeof races[keyof typeof races]>>;
 
 const raceMap: Omit<RaceMap, ''> = {
   Human: races.Human,
@@ -18,6 +21,24 @@ const raceMap: Omit<RaceMap, ''> = {
   Dwarf: races.Dwarf,
   'Half-Elf': races.HalfElf,
   'Half-Orc': races.HalfOrc,
+};
+
+const bonusAbilityMap: BonusAbilityMap = {
+  Elf: [
+    ['dexterity', 2, 1],
+    ['intelligence', 2, 1],
+    ['constitution', -2, -1],
+  ],
+  Dwarf: [
+    ['constitution', 2, 1],
+    ['wisdom', 2, 1],
+    ['charisma', -2, -1],
+  ],
+  Halfling: [
+    ['dexterity', 2, 1],
+    ['charisma', 2, 1],
+    ['strength', -2, -1],
+  ],
 };
 
 export interface ICharacterRaceProps {
@@ -30,14 +51,24 @@ export default function CharacterRace(props: ICharacterRaceProps) {
   const { race } = characterState;
   type RaceType = typeof race;
   //  const [raceChoice, setRaceChoice] = useState('');
-  const setRaceChoice = (value: RaceType) => {
+  const setRaceChoice = (race: RaceType) => {
     updateCharacterState((draft) => {
-      draft.race = value;
+      draft.race = race;
+      if (race in bonusAbilityMap) {
+        const bonusAbilityScore = bonusAbilityMap[
+          race as RaceWithFixedBonusAbilities
+        ].map(([ability, value, mod]) => {
+          return {
+            ability,
+            value,
+            mod,
+          };
+        });
+        draft.bonusAbilityScore = bonusAbilityScore;
+      } else {
+        draft.bonusAbilityScore = [];
+      }
     });
-  };
-
-  const setBonusAbilityScore = (item: AbilitiesMapItem) => {
-    console.log('on change', item);
   };
 
   const SelectedRaceContent = race ? raceMap[race] : null;
@@ -100,8 +131,15 @@ export default function CharacterRace(props: ICharacterRaceProps) {
         </div>
       </div>
       {SelectedRaceContent ? (
-        <SelectedRaceContent updateCharacterState={updateCharacterState} />
+        <SelectedRaceContent
+          characterState={characterState}
+          updateCharacterState={updateCharacterState}
+        />
       ) : null}
+      <SelectBonusLanguages
+        characterState={characterState}
+        updateCharacterState={updateCharacterState}
+      />
     </div>
   );
 }
