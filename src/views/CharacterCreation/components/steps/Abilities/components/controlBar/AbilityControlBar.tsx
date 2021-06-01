@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { classicNameResolver } from 'typescript';
 import { Ability } from '../../../../../characterCreation.types';
+import styles from './AbilityControlBar.module.css';
 type AbilityKey = Lowercase<Ability>;
 export interface IAbilitityControlBarProps {
   ability: Ability;
@@ -81,8 +83,23 @@ export default function AbilitityControlBar(props: IAbilitityControlBarProps) {
     );
   };
 
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseHover = () => {
+    console.log(ability);
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+
   return (
-    <tr>
+    <tr
+      onMouseEnter={handleMouseHover}
+      onMouseLeave={handleMouseLeave}
+      className={isHovering ? styles.highlight : ''}
+    >
       <td>
         <h4>{ability}</h4>
       </td>

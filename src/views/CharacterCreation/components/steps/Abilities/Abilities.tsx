@@ -87,17 +87,6 @@ export default function Abilities(props: IAbilitiesProps) {
                 value={abilities.charisma.value}
                 updateAbility={updateAbility}
               />
-              {/*
-                <h4>strength</h4>
-                <div className="ability-control__bar"></div>
-                <td>10</td>
-                <td>0</td>
-                <td>0</td>
-                <td>
-                  <button>-</button>
-                  <button>+</button>
-                </td>
-                */}
             </tbody>
           </table>
           <div className={styles.abilityDescriptions}>
