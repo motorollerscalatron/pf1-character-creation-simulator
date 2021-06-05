@@ -1,10 +1,12 @@
 import * as React from 'react';
 
-export interface ICharismaDescriptionProps {}
+export interface ICharismaDescriptionProps {
+  className?: string;
+}
 
 export default function CharismaDescription(props: ICharismaDescriptionProps) {
   return (
-    <div className="ability-description">
+    <div className="ability-description" {...props}>
       <h2>Charisma</h2>{' '}
       <p>
         Charisma measures a character's personality, personal magnetism, ability

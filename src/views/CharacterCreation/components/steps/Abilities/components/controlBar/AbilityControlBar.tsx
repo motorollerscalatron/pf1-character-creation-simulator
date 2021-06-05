@@ -12,6 +12,9 @@ export interface IAbilitityControlBarProps {
     mod: number,
     costDifference: number
   ) => void;
+  handleMouseEnter: (ability: Ability) => void;
+  handleMouseLeave: (ability: Ability) => void;
+  isHovering: boolean;
 }
 
 /*
@@ -56,7 +59,14 @@ take the current cost and add the previous cost to it
 
 */
 export default function AbilitityControlBar(props: IAbilitityControlBarProps) {
-  const { ability, value, updateAbility } = props;
+  const {
+    ability,
+    value,
+    updateAbility,
+    isHovering,
+    handleMouseEnter,
+    handleMouseLeave,
+  } = props;
 
   const [mod, cost] = abilitiesValuesConfig[value];
 
@@ -83,21 +93,10 @@ export default function AbilitityControlBar(props: IAbilitityControlBarProps) {
     );
   };
 
-  const [isHovering, setIsHovering] = useState(false);
-
-  const handleMouseHover = () => {
-    console.log(ability);
-    setIsHovering(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-  };
-
   return (
     <tr
-      onMouseEnter={handleMouseHover}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => handleMouseEnter(ability)}
+      onMouseLeave={() => handleMouseLeave(ability)}
       className={isHovering ? styles.highlight : ''}
     >
       <td>

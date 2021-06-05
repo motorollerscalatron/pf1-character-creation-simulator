@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Updater } from 'use-immer';
 import {
   ICharacterGenerationState,
+  UpdateCharacterState,
   Race,
 } from '../../../characterCreation.types';
 import * as races from './components/races';
@@ -43,7 +43,7 @@ const bonusAbilityMap: BonusAbilityMap = {
 
 export interface ICharacterRaceProps {
   characterState: ICharacterGenerationState;
-  updateCharacterState: Updater<ICharacterGenerationState>;
+  updateCharacterState: UpdateCharacterState;
 }
 
 export default function CharacterRace(props: ICharacterRaceProps) {
@@ -54,6 +54,7 @@ export default function CharacterRace(props: ICharacterRaceProps) {
   const setRaceChoice = (race: RaceType) => {
     updateCharacterState((draft) => {
       draft.race = race;
+      draft.bonusLanguage.clear();
       if (race in bonusAbilityMap) {
         const bonusAbilityScore = bonusAbilityMap[
           race as RaceWithFixedBonusAbilities

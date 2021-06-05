@@ -36,10 +36,30 @@ export default function SelectBonusLanguages(
   props: ISelectBonusLanguagesProps
 ) {
   const { characterState, updateCharacterState } = props;
-  const { race, abilities } = characterState;
+  const { race, abilities, bonusLanguage } = characterState;
   const { intelligence } = abilities;
 
   const numLanguages = getLanguagesNum(intelligence, languageIntMap);
+
+  console.log({ characterState });
+
+  const onLanguageChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    language: string
+  ) => {
+    console.log(e, language);
+    const nextLanguageState = e.target.checked;
+    updateCharacterState((draft) => {
+      if (nextLanguageState) {
+        if (numLanguages == bonusLanguage.size) {
+          return;
+        }
+        draft.bonusLanguage.set(language, nextLanguageState);
+      } else {
+        draft.bonusLanguage.delete(language);
+      }
+    });
+  };
 
   return race && numLanguages ? (
     <div>
@@ -51,6 +71,10 @@ export default function SelectBonusLanguages(
               <input
                 type="checkbox"
                 className="checked:bg-blue-600 checked:border-transparent"
+                checked={bonusLanguage.has(language)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  onLanguageChange(e, language)
+                }
               />
               {language}
             </div>
