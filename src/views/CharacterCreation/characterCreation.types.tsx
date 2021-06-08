@@ -20,6 +20,14 @@ export type Race =
   | 'Halfling'
   | '';
 
+export type CharacterClass =
+  | 'Fighter'
+  | 'Rouge'
+  | 'Paladin'
+  | 'Cleric'
+  | 'Sorcerer'
+  | 'Wizard';
+
 export type AbilityValue = {
   value: number;
   mod: number;
@@ -62,15 +70,8 @@ export interface ICharacterGenerationState {
   abilities: Abilities;
   race: Race;
   bonusAbilityScore: BonusAbilityScore[];
-  bonusLanguage: string;
-  class:
-    | 'Fighter'
-    | 'Rouge'
-    | 'Paladin'
-    | 'Cleric'
-    | 'Sorcerer'
-    | 'Wizard'
-    | '';
+  bonusLanguage: Map<string, boolean>;
+  characterClass: CharacterClass | '';
 }
 
 type Character = Omit<ICharacterGenerationState, 'campaignType'>;

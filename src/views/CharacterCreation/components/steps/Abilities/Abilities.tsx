@@ -21,6 +21,17 @@ export default function Abilities(props: IAbilitiesProps) {
   const { abilities } = characterState;
   const [pointsSpent, setPointsSpent] = useState(0);
 
+  const [abilityHovered, setHoveredAbility] = useState<Ability | null>(null);
+
+  const handleMouseEnter = (ability: Ability) => {
+    console.log(ability);
+    setHoveredAbility(ability);
+  };
+
+  const handleMouseLeave = (ability: Ability) => {
+    setHoveredAbility(null);
+  };
+
   const updateAbility = (
     ability: Lowercase<Ability>,
     value: number,
@@ -61,52 +72,71 @@ export default function Abilities(props: IAbilitiesProps) {
                 ability="Strength"
                 value={abilities.strength.value}
                 updateAbility={updateAbility}
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+                isHovering={abilityHovered === 'Strength'}
               />
               <AbilityControlBar
                 ability="Dexterity"
                 value={abilities.dexterity.value}
                 updateAbility={updateAbility}
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+                isHovering={abilityHovered === 'Dexterity'}
               />
               <AbilityControlBar
                 ability="Constitution"
                 value={abilities.constitution.value}
                 updateAbility={updateAbility}
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+                isHovering={abilityHovered === 'Constitution'}
               />
               <AbilityControlBar
                 ability="Intelligence"
                 value={abilities.intelligence.value}
                 updateAbility={updateAbility}
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+                isHovering={abilityHovered === 'Intelligence'}
               />
               <AbilityControlBar
                 ability="Wisdom"
                 value={abilities.wisdom.value}
                 updateAbility={updateAbility}
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+                isHovering={abilityHovered === 'Wisdom'}
               />
               <AbilityControlBar
                 ability="Charisma"
                 value={abilities.charisma.value}
                 updateAbility={updateAbility}
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+                isHovering={abilityHovered === 'Charisma'}
               />
-              {/*
-                <h4>strength</h4>
-                <div className="ability-control__bar"></div>
-                <td>10</td>
-                <td>0</td>
-                <td>0</td>
-                <td>
-                  <button>-</button>
-                  <button>+</button>
-                </td>
-                */}
             </tbody>
           </table>
           <div className={styles.abilityDescriptions}>
-            <StrengthDescription />
-            <DexterityDescription />
-            <ConstitutionDescription />
-            <IntelligenceDescription />
-            <WisdomDescription />
-            <CharismaDescription />
+            <StrengthDescription
+              className={abilityHovered === 'Strength' ? 'block' : 'hidden'}
+            />
+            <DexterityDescription
+              className={abilityHovered === 'Dexterity' ? 'block' : 'hidden'}
+            />
+            <ConstitutionDescription
+              className={abilityHovered === 'Constitution' ? 'block' : 'hidden'}
+            />
+            <IntelligenceDescription
+              className={abilityHovered === 'Intelligence' ? 'block' : 'hidden'}
+            />
+            <WisdomDescription
+              className={abilityHovered === 'Wisdom' ? 'block' : 'hidden'}
+            />
+            <CharismaDescription
+              className={abilityHovered === 'Charisma' ? 'block' : 'hidden'}
+            />
           </div>
         </div>
       </div>

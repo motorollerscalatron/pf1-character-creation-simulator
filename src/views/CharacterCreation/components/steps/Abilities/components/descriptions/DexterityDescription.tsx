@@ -1,10 +1,12 @@
 import * as React from 'react';
 
-export interface ICharismaDescriptionProps {}
+export interface ICharismaDescriptionProps {
+  className?: string;
+}
 
 export default function DexterityDescription(props: ICharismaDescriptionProps) {
   return (
-    <div className="ability-description">
+    <div className="ability-description" {...props}>
       <h2>Dexterity</h2>{' '}
       <p>
         Dexterity measures agility, reflexes, and balance. This ability is the

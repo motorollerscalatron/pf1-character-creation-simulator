@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { classicNameResolver } from 'typescript';
 import { Ability } from '../../../../../characterCreation.types';
+import styles from './AbilityControlBar.module.css';
 type AbilityKey = Lowercase<Ability>;
 export interface IAbilitityControlBarProps {
   ability: Ability;
@@ -10,6 +12,9 @@ export interface IAbilitityControlBarProps {
     mod: number,
     costDifference: number
   ) => void;
+  handleMouseEnter: (ability: Ability) => void;
+  handleMouseLeave: (ability: Ability) => void;
+  isHovering: boolean;
 }
 
 /*
@@ -54,7 +59,14 @@ take the current cost and add the previous cost to it
 
 */
 export default function AbilitityControlBar(props: IAbilitityControlBarProps) {
-  const { ability, value, updateAbility } = props;
+  const {
+    ability,
+    value,
+    updateAbility,
+    isHovering,
+    handleMouseEnter,
+    handleMouseLeave,
+  } = props;
 
   const [mod, cost] = abilitiesValuesConfig[value];
 
@@ -82,7 +94,11 @@ export default function AbilitityControlBar(props: IAbilitityControlBarProps) {
   };
 
   return (
-    <tr>
+    <tr
+      onMouseEnter={() => handleMouseEnter(ability)}
+      onMouseLeave={() => handleMouseLeave(ability)}
+      className={isHovering ? styles.highlight : ''}
+    >
       <td>
         <h4>{ability}</h4>
       </td>

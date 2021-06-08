@@ -1,12 +1,14 @@
 import * as React from 'react';
 
-export interface ICharismaDescriptionProps {}
+export interface ICharismaDescriptionProps {
+  className?: string;
+}
 
 export default function IntelligenceDescription(
   props: ICharismaDescriptionProps
 ) {
   return (
-    <div className="ability-description">
+    <div className="ability-description" {...props}>
       <h2>Intelligence</h2>{' '}
       <p>
         Intelligence determines how well your character learns and reasons. This

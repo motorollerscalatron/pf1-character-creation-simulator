@@ -14,6 +14,7 @@ import { useImmer } from 'use-immer';
 import { ICharacterGenerationState } from './characterCreation.types';
 import { nameStepValidator } from './components/steps/Name/nameStepValidator';
 import { abilityStepValidator } from './components/steps/Abilities/abilityStepValidator';
+import { raceStepValidator } from './components/steps/Race/raceStepValidator';
 
 const { useState } = React;
 export interface ICharacterCreationProps {}
@@ -26,8 +27,8 @@ const componentsMap: ComponentsMap = {
   1: Name,
   2: Abilities,
   3: Race,
-  /*
   4: Class,
+  /*
   5: Skills,
   6: Feats,
   7: Equipment,
@@ -42,6 +43,7 @@ type StepValidators = {
 const stepValidators: StepValidators = {
   1: nameStepValidator,
   2: abilityStepValidator,
+  3: raceStepValidator,
 };
 
 const initialState: ICharacterGenerationState = {
@@ -55,52 +57,6 @@ const initialState: ICharacterGenerationState = {
     intelligence: { value: 10, mod: 0 },
     wisdom: { value: 10, mod: 0 },
     charisma: { value: 10, mod: 0 },
-    /*
-
-     strength: {
-      value: 10,
-      mod: 0,
-    },
-    dexterity: {
-      value: 10,
-      mod: 0,
-    },
-    constitution: {
-      value: 10,
-      mod: 0,
-    },
-    intelligence: {
-      value: 10,
-      mod: 0,
-    },
-    wisdom: {
-      value: 10,
-      mod: 0,
-    },
-    charisma: {
-      value: 10,
-      mod: 0,
-    },
-
-
-    [
-    {
-      ability: 'Constitution',
-      value: 2,
-      mod: 1,
-    },
-    {
-      ability: 'Wisdom',
-      value: 2,
-      mod: 1,
-    },
-    {
-      ability: 'Charisma',
-      value: -2,
-      mod: -1,
-    },
-  ]
-    */
   },
   race: '',
   bonusAbilityScore: [
@@ -110,8 +66,8 @@ const initialState: ICharacterGenerationState = {
       mod: 0,
     },
   ],
-  bonusLanguage: '',
-  class: '',
+  bonusLanguage: new Map(),
+  characterClass: '',
 };
 
 export default function CharacterCreation(props: ICharacterCreationProps) {

@@ -1,12 +1,14 @@
 import * as React from 'react';
 
-export interface ICharismaDescriptionProps {}
+export interface ICharismaDescriptionProps {
+  className?: string;
+}
 
 export default function ConstitutionDescription(
   props: ICharismaDescriptionProps
 ) {
   return (
-    <div className="ability-description">
+    <div className="ability-description" {...props}>
       <h2>Constitution</h2>{' '}
       <p>
         Constitution represents your character's health and stamina. A

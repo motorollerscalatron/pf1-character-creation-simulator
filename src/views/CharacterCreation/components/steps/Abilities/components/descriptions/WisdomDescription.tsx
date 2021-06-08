@@ -1,10 +1,12 @@
 import * as React from 'react';
 
-export interface ICharismaDescriptionProps {}
+export interface ICharismaDescriptionProps {
+  className?: string;
+}
 
 export default function WisdomDescription(props: ICharismaDescriptionProps) {
   return (
-    <div className="ability-description">
+    <div className="ability-description" {...props}>
       <h2>Wisdom</h2>{' '}
       <p>
         Wisdom describes a character's willpower, common sense, awareness, and

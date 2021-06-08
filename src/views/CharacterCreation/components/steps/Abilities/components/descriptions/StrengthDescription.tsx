@@ -1,10 +1,12 @@
 import * as React from 'react';
 
-export interface ICharismaDescriptionProps {}
+export interface ICharismaDescriptionProps {
+  className?: string;
+}
 
 export default function StrengthDescription(props: ICharismaDescriptionProps) {
   return (
-    <div className="ability-description">
+    <div className="ability-description" {...props}>
       <h2>Strength</h2>{' '}
       <p>
         Strength measures muscle and physical power. This ability is important
