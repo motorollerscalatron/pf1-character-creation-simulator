@@ -102,7 +102,6 @@ export default function CharacterCreation(props: ICharacterCreationProps) {
 
         <section className="col-span-9 space-y-8">
           <div>
-            {/*<CurrentComponent characterState={characterState} />*/}
             <CurrentComponent
               characterState={characterState}
               updateCharacterState={updateCharacterState}

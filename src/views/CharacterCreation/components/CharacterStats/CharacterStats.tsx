@@ -55,7 +55,8 @@ export default function CharacterStats(props: ICharacterStatsProps) {
         className="text-sm font-sans leading-tight .leading-6"
       >
         <h3 className="text-xl">{characterState.name}</h3>
-        <strong>{characterState.race}</strong>
+        <strong>{characterState.race}</strong>{' '}
+        <strong>{characterState.characterClass}</strong>
         <h5 className={styles.abilityHeader}>Defense</h5>
         <div className="space-y-1 mb-3">
           <div>

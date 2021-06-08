@@ -50,7 +50,6 @@ export default function CharacterRace(props: ICharacterRaceProps) {
   const { characterState, updateCharacterState } = props;
   const { race } = characterState;
   type RaceType = typeof race;
-  //  const [raceChoice, setRaceChoice] = useState('');
   const setRaceChoice = (race: RaceType) => {
     updateCharacterState((draft) => {
       draft.race = race;

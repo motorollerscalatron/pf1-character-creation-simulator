@@ -22,7 +22,7 @@ export type Race =
 
 export type CharacterClass =
   | 'Fighter'
-  | 'Rouge'
+  | 'Rogue'
   | 'Paladin'
   | 'Cleric'
   | 'Sorcerer'
@@ -44,18 +44,6 @@ export type BonusAbilityScore = {
   value: number;
   mod: number;
 };
-/*
-
- {
-    strength: number;
-    dexterity: number;
-    constitution: number;
-    intelligence: number;
-    wisdom: number;
-    charisma: number;
-  }
-  */
-
 export type Languages = Omit<Record<Race, string[]>, ''>;
 
 export interface ICharacterGenerationState {
