@@ -12,7 +12,6 @@ import {
   BonusAbilityMap,
   RaceWithFixedBonusAbilities,
 } from './Race.types';
-console.log({ races });
 
 const raceMap: Omit<RaceMap, ''> = {
   Human: races.Human,

@@ -4,9 +4,10 @@ import {
   UpdateCharacterState,
   CharacterClass,
 } from '../../../characterCreation.types';
+import { CharacterClassMap } from './Class.types';
 import * as characterClasses from './components/classes';
 
-const characterClassMap = {
+const characterClassMap: Omit<CharacterClassMap, ''> = {
   Fighter: characterClasses.Fighter,
   Rogue: characterClasses.Rogue,
   Paladin: characterClasses.Paladin,
@@ -29,6 +30,10 @@ export default function CharacterClasses(props: ICharacterClassProps) {
       draft.characterClass = characterClass;
     });
   };
+
+  const SelectedClassContent = characterClass
+    ? characterClassMap[characterClass]
+    : null;
 
   return (
     <div>
@@ -87,6 +92,12 @@ export default function CharacterClasses(props: ICharacterClassProps) {
           <label htmlFor="select-character-class-wizard">Wizard</label>
         </div>
       </div>
+      {SelectedClassContent ? (
+        <SelectedClassContent
+          characterState={characterState}
+          updateCharacterState={updateCharacterState}
+        />
+      ) : null}
     </div>
   );
 }
