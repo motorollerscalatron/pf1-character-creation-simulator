@@ -24,7 +24,6 @@ export default function Abilities(props: IAbilitiesProps) {
   const [abilityHovered, setHoveredAbility] = useState<Ability | null>(null);
 
   const handleMouseEnter = (ability: Ability) => {
-    console.log(ability);
     setHoveredAbility(ability);
   };
 
@@ -44,6 +43,7 @@ export default function Abilities(props: IAbilitiesProps) {
         mod,
       };
     });
+
     setPointsSpent((num) => num + costDifference);
   };
 

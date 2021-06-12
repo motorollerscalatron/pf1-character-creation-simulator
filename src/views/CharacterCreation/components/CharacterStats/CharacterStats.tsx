@@ -60,43 +60,42 @@ export default function CharacterStats(props: ICharacterStatsProps) {
         <h5 className={styles.abilityHeader}>Defense</h5>
         <div className="space-y-1 mb-3">
           <div>
-            <strong>HP</strong>{' '}
-            {calculateHealthPoints(characterState.abilities.constitution)}
+            <strong>HP</strong> {characterState.defense.hp.value}
           </div>
           <div className="flex justify-between">
             <div className="w-1/3">
-              <strong>AC:</strong> 10
+              <strong>AC:</strong> {characterState.defense.ac.value}
             </div>
             <div className="w-1/3">
-              <strong>TAC:</strong> 10
+              <strong>TAC:</strong> {characterState.defense.tac.value}
             </div>
             <div className="w-1/3">
-              <strong>FFAC:</strong> 10
+              <strong>FFAC:</strong> {characterState.defense.ffac.value}
             </div>
           </div>
           <div className="flex justify-between mb-2">
             <div className="w-1/3">
-              <strong>Ref:</strong> 0
+              <strong>Ref:</strong> {characterState.defense.reflex.value}
             </div>
             <div className="w-1/3">
-              <strong>Fort:</strong> 0
+              <strong>Fort:</strong> {characterState.defense.fortitude.value}
             </div>
             <div className="w-1/3">
-              <strong>Will:</strong> 0
+              <strong>Will:</strong> {characterState.defense.will.value}
             </div>
           </div>
         </div>
         <h5 className={styles.abilityHeader}>Offense</h5>
         <div className="mb-3 space-y-1">
           <div>
-            <b>Speed</b> 30
+            <b>Speed</b> {characterState.offense.speed.value}
           </div>
           <div>
-            <b>Melee</b> +0
+            <b>Melee</b> {characterState.offense.melee.value}
           </div>
 
           <div>
-            <b>Ranged</b> +0
+            <b>Ranged</b> {characterState.offense.ranged.value}
           </div>
         </div>
         <h5 className={styles.abilityHeader}>Abilities</h5>
@@ -111,6 +110,10 @@ export default function CharacterStats(props: ICharacterStatsProps) {
             );
           })}
         </div>
+        <h5 className={styles.abilityHeader}>Racial traits</h5>
+        <div className={clsx(styles.previewAbilities)}></div>
+        <h5 className={styles.abilityHeader}>Class Traits</h5>
+        <div className={clsx(styles.previewAbilities)}></div>
         <h5 className={styles.abilityHeader}>Feats</h5>
       </div>
     </div>
