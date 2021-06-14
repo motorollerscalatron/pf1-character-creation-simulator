@@ -6,6 +6,7 @@ import {
 } from '../../../characterCreation.types';
 import { CharacterClassMap } from './Class.types';
 import * as characterClasses from './components/classes';
+import { classes } from '../../../config/classes';
 
 const characterClassMap: Omit<CharacterClassMap, ''> = {
   Fighter: characterClasses.Fighter,
@@ -23,11 +24,34 @@ export interface ICharacterClassProps {
 
 export default function CharacterClasses(props: ICharacterClassProps) {
   const { characterState, updateCharacterState } = props;
-  const { characterClass } = characterState;
+  const { characterClass, characterClassTraits } = characterState;
+
+  type CharacterClassTraitsType = typeof characterClassTraits;
+  // const setCharacterClassTraits = (
+  //   characterClassTraits: CharacterClassTraitsType
+  // ) => {
+  //   updateCharacterState((draft) => {
+  //     draft.characterClassTraits = characterClassTraits;
+  //   });
+  // };
+
   type CharacterClassType = typeof characterClass;
+  //  type CharacterClassLowerType = typeof characterClass.toLowerCase;
   const setCharacterClassChoice = (characterClass: CharacterClassType) => {
     updateCharacterState((draft) => {
       draft.characterClass = characterClass;
+      const lowerCharacterClass = characterClass.toLowerCase();
+      //      const lowerCharacterClass = LowerCase<characterClass>;
+      console.log('characterClass in setCharacterClassChoice', characterClass);
+      console.log(
+        'lowerCharacterClass in setCharacterClassChoice',
+        lowerCharacterClass
+      );
+
+      draft.characterClassTraits = classes.fighter;
+      draft.characterClassTraits = classes['fighter'];
+      //      draft.characterClassTraits = characterClass ? classes. : null;
+      //      draft.characterClassTraits = characterClass ? classes[lowerCharacterClass] : null;
     });
   };
 
@@ -98,6 +122,26 @@ export default function CharacterClasses(props: ICharacterClassProps) {
           updateCharacterState={updateCharacterState}
         />
       ) : null}
+      <div>
+        <h4>Standard Traits</h4>
+        <div className="flex justify-between">
+          <div className="w-1/3">
+            <strong>Hit Points: </strong>
+          </div>
+          <div className="w-1/3">
+            <strong>
+              Melee Attack Bonus:{' '}
+              {characterState.characterClassTraits?.bonusStats.offense.melee}
+            </strong>
+          </div>
+          <div className="w-1/3">
+            <strong>
+              Ranged Attack Bonus:{' '}
+              {characterState.characterClassTraits?.bonusStats.offense.ranged}
+            </strong>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

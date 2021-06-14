@@ -33,7 +33,7 @@ const withBonusAbilityScore = (
 
 export default function CharacterStats(props: ICharacterStatsProps) {
   const { characterState } = props;
-  const { abilities, bonusAbilityScore } = characterState;
+  const { abilities, bonusAbilityScore, characterClassTraits } = characterState;
 
   const previewAbilities: [string, AbilityValue][] = Object.entries(
     abilities
@@ -47,6 +47,21 @@ export default function CharacterStats(props: ICharacterStatsProps) {
       ),
     ];
   });
+
+  console.log(
+    'class traits in CharacterStats',
+    characterClassTraits?.classTraits
+  );
+  // const previewClassTraits: [string, string][] = [
+
+  //   ['', ''],
+  //   ['', ''],
+  // ];
+
+  const previewClassTraits: [string, string][] | undefined =
+    characterClassTraits?.classTraits.map(({ label, description }) => {
+      return [label, description];
+    });
 
   return (
     <div className="preview-column shadow-md p-6 text-left">
@@ -75,13 +90,19 @@ export default function CharacterStats(props: ICharacterStatsProps) {
           </div>
           <div className="flex justify-between mb-2">
             <div className="w-1/3">
-              <strong>Ref:</strong> {characterState.defense.reflex.value}
+              <strong>Ref:</strong>{' '}
+              {characterState.defense.reflex.value > 0 ? '+' : ''}
+              {characterState.defense.reflex.value}
             </div>
             <div className="w-1/3">
-              <strong>Fort:</strong> {characterState.defense.fortitude.value}
+              <strong>Fort:</strong>{' '}
+              {characterState.defense.fortitude.value > 0 ? '+' : ''}
+              {characterState.defense.fortitude.value}
             </div>
             <div className="w-1/3">
-              <strong>Will:</strong> {characterState.defense.will.value}
+              <strong>Will:</strong>{' '}
+              {characterState.defense.will.value > 0 ? '+' : ''}
+              {characterState.defense.will.value}
             </div>
           </div>
         </div>
@@ -91,11 +112,13 @@ export default function CharacterStats(props: ICharacterStatsProps) {
             <b>Speed</b> {characterState.offense.speed.value}
           </div>
           <div>
-            <b>Melee</b> {characterState.offense.melee.value}
+            <b>Melee</b> {characterState.offense.melee.value > 0 ? '+' : ''}
+            {characterState.offense.melee.value}
           </div>
 
           <div>
-            <b>Ranged</b> {characterState.offense.ranged.value}
+            <b>Ranged</b> {characterState.offense.ranged.value > 0 ? '+' : ''}
+            {characterState.offense.ranged.value}
           </div>
         </div>
         <h5 className={styles.abilityHeader}>Abilities</h5>
@@ -113,7 +136,11 @@ export default function CharacterStats(props: ICharacterStatsProps) {
         <h5 className={styles.abilityHeader}>Racial traits</h5>
         <div className={clsx(styles.previewAbilities)}></div>
         <h5 className={styles.abilityHeader}>Class Traits</h5>
-        <div className={clsx(styles.previewAbilities)}></div>
+        <div className={clsx(styles.previewAbilities)}>
+          {previewClassTraits?.map(([label, desc]) => {
+            return <p>{label}, </p>;
+          })}
+        </div>
         <h5 className={styles.abilityHeader}>Feats</h5>
       </div>
     </div>

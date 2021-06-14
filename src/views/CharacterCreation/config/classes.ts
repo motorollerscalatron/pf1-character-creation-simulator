@@ -40,6 +40,54 @@ const CLASS_TRAITS = {
     label: 'Smite Evil',
     description: 'Gain a combat bonus against one evil creature per day',
   },
+  AURA: {
+    label: 'Aura',
+    description:
+      "You have a powerful aura corresponding to your deity's alignment",
+  },
+  DOMAIN: {
+    label: 'Domain',
+    description: '',
+  },
+  ORISONS: {
+    label: 'Orisons',
+    description:
+      'You can prepare 3 orisons each day that you can cast any number of times that day.',
+  },
+  SPELLCASTING: {
+    label: 'SpellCasting',
+    description: 'You are able to cast level one cleric spells.',
+  },
+  CHANNEL_ENERGY: {
+    label: 'Channel Energy',
+    description:
+      "You can channel divine energy which affects the creatures within 30' of you.",
+  },
+  ESCHEW_MATERIALS: {
+    label: 'Eschew Materials',
+    description:
+      'You can cast any spell with a material component costing 1 gp or less without needing that component.',
+  },
+  BLOODLINE_POWER: {
+    label: 'Bloodline Power',
+    description: '',
+  },
+  CANTRIPS: {
+    label: 'Cantrips',
+    description: '',
+  },
+  WIZARD_SCHOOL: {
+    label: '',
+    description: '',
+  },
+  SCRIBE_SCROLL: {
+    label: 'Scribe Scroll',
+    description: 'Can write a scroll of a known cantrip or spell',
+  },
+  ARCANE_BOND: {
+    label: 'Arcane Bond',
+    description: '',
+  },
 };
 
 export type ClassTraits = {
@@ -47,10 +95,12 @@ export type ClassTraits = {
     defense: {
       hp?: number;
       fortitude?: number;
-      melee?: number;
-      ranged?: number;
       reflex?: number;
       will?: number;
+    };
+    offense: {
+      melee?: number;
+      ranged?: number;
     };
   };
   bonusFeats: number;
@@ -68,6 +118,8 @@ export const classes: Classes = {
       defense: {
         hp: 4,
         fortitude: 2,
+      },
+      offense: {
         melee: 1,
         ranged: 1,
       },
@@ -85,6 +137,7 @@ export const classes: Classes = {
         hp: 2,
         reflex: 2,
       },
+      offense: {},
     },
     bonusFeats: 0,
     classTraits: [
@@ -99,6 +152,10 @@ export const classes: Classes = {
         hp: 4,
         fortitude: 2,
         will: 2,
+      },
+      offense: {
+        melee: 1,
+        ranged: 1,
       },
     },
     bonusFeats: 0,
@@ -117,9 +174,16 @@ export const classes: Classes = {
         fortitude: 2,
         will: 2,
       },
+      offense: {},
     },
     bonusFeats: 0,
-    classTraits: [],
+    classTraits: [
+      CLASS_TRAITS.AURA,
+      CLASS_TRAITS.DOMAIN,
+      CLASS_TRAITS.ORISONS,
+      CLASS_TRAITS.SPELLCASTING,
+      CLASS_TRAITS.CHANNEL_ENERGY,
+    ],
   },
   sorcerer: {
     bonusStats: {
@@ -128,9 +192,15 @@ export const classes: Classes = {
         reflex: 2,
         will: 2,
       },
+      offense: {},
     },
     bonusFeats: 0,
-    classTraits: [],
+    classTraits: [
+      CLASS_TRAITS.ESCHEW_MATERIALS,
+      CLASS_TRAITS.BLOODLINE_POWER,
+      CLASS_TRAITS.CANTRIPS,
+      CLASS_TRAITS.SPELLCASTING,
+    ],
   },
   wizard: {
     bonusStats: {
@@ -138,8 +208,14 @@ export const classes: Classes = {
         hp: 0,
         will: 2,
       },
+      offense: {},
     },
     bonusFeats: 0,
-    classTraits: [],
+    classTraits: [
+      CLASS_TRAITS.WIZARD_SCHOOL,
+      CLASS_TRAITS.CANTRIPS,
+      CLASS_TRAITS.SPELLCASTING,
+      CLASS_TRAITS.SCRIBE_SCROLL,
+    ],
   },
 };

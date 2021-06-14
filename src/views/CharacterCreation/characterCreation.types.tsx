@@ -28,6 +28,9 @@ export type CharacterClass =
   | 'Cleric'
   | 'Sorcerer'
   | 'Wizard';
+
+export type CharacterClassLower = Lowercase<CharacterClass>;
+
 type BaseStatValue = {
   value: number;
   mod: number;
@@ -35,11 +38,6 @@ type BaseStatValue = {
 
 export type AbilityValue = BaseStatValue;
 
-// type Person = Record<'name' | 'age', string | number>
-// type PersonTwo = {
-//   name: string,
-//   age: number
-// }
 export type Abilities = Record<AbilityLower, AbilityValue>;
 export type OffenseValue = BaseStatValue & { baseValue: number };
 export type DefenseValue = BaseStatValue & { baseValue: number };
@@ -64,7 +62,7 @@ export type BonusAbilityScore = {
   mod: number;
 };
 export type Languages = Omit<Record<Race, string[]>, ''>;
-
+export type CharacterClassTrait = Record<string, string>;
 export interface ICharacterGenerationState {
   name: string;
   gender: 'Male' | 'Female' | 'Other' | '';
