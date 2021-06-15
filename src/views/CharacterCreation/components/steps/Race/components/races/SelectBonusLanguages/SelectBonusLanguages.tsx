@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import { languages } from '../../../../../../config/languages';
 import { languages } from '@/views/CharacterCreation/config/languages';
 import {
   AbilityValue,

@@ -7,6 +7,7 @@ import {
 import { CharacterClassMap } from './Class.types';
 import * as characterClasses from './components/classes';
 import { classes } from '../../../config/classes';
+import StandardTraits from './components/classes/StandardTraits/StandardTraits';
 
 const characterClassMap: Omit<CharacterClassMap, ''> = {
   Fighter: characterClasses.Fighter,
@@ -71,6 +72,7 @@ export default function CharacterClasses(props: ICharacterClassProps) {
             name="characterClass"
             id="select-character-class-fighter"
             value="Fighter"
+            checked={characterState.characterClass === 'Fighter'}
             onChange={(e) => setCharacterClassChoice('Fighter')}
           />
           <label htmlFor="select-character-class-fighter">Fighter</label>
@@ -79,6 +81,7 @@ export default function CharacterClasses(props: ICharacterClassProps) {
             name="characterClass"
             id="select-character-class-rogue"
             value="Rogue"
+            checked={characterState.characterClass === 'Rogue'}
             onChange={(e) => setCharacterClassChoice('Rogue')}
           />
           <label htmlFor="select-character-class-rogue">Rogue</label>
@@ -87,6 +90,7 @@ export default function CharacterClasses(props: ICharacterClassProps) {
             name="characterClass"
             id="select-character-class-paladin"
             value="Paladin"
+            checked={characterState.characterClass === 'Paladin'}
             onChange={(e) => setCharacterClassChoice('Paladin')}
           />
           <label htmlFor="select-character-class-paladin">Paladin</label>
@@ -95,6 +99,7 @@ export default function CharacterClasses(props: ICharacterClassProps) {
             name="characterClass"
             id="select-character-class-cleric"
             value="Cleric"
+            checked={characterState.characterClass === 'Cleric'}
             onChange={(e) => setCharacterClassChoice('Cleric')}
           />
           <label htmlFor="select-character-class-cleric">Cleric</label>
@@ -103,6 +108,7 @@ export default function CharacterClasses(props: ICharacterClassProps) {
             name="characterClass"
             id="select-character-class-sorcerer"
             value="Sorcerer"
+            checked={characterState.characterClass === 'Sorcerer'}
             onChange={(e) => setCharacterClassChoice('Sorcerer')}
           />
           <label htmlFor="select-character-class-sorcerer">Sorcerer</label>
@@ -111,6 +117,7 @@ export default function CharacterClasses(props: ICharacterClassProps) {
             name="characterClass"
             id="select-character-class-wizard"
             value="Wizard"
+            checked={characterState.characterClass === 'Wizard'}
             onChange={(e) => setCharacterClassChoice('Wizard')}
           />
           <label htmlFor="select-character-class-wizard">Wizard</label>
@@ -123,24 +130,7 @@ export default function CharacterClasses(props: ICharacterClassProps) {
         />
       ) : null}
       <div>
-        <h4>Standard Traits</h4>
-        <div className="flex justify-between">
-          <div className="w-1/3">
-            <strong>Hit Points: </strong>
-          </div>
-          <div className="w-1/3">
-            <strong>
-              Melee Attack Bonus:{' '}
-              {characterState.characterClassTraits?.bonusStats.offense.melee}
-            </strong>
-          </div>
-          <div className="w-1/3">
-            <strong>
-              Ranged Attack Bonus:{' '}
-              {characterState.characterClassTraits?.bonusStats.offense.ranged}
-            </strong>
-          </div>
-        </div>
+        <StandardTraits characterState={characterState} />
       </div>
     </div>
   );

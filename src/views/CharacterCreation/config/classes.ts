@@ -108,6 +108,7 @@ export type ClassTraits = {
     label: string;
     description: string;
   }[];
+  skillPoints: number;
 };
 
 type Classes = Record<Lowercase<CharacterClass>, ClassTraits>;
@@ -130,6 +131,7 @@ export const classes: Classes = {
       CLASS_TRAITS.SHIELD_PROFICIENCY,
       CLASS_TRAITS.BONUS_FEAT,
     ],
+    skillPoints: 2,
   },
   rogue: {
     bonusStats: {
@@ -145,6 +147,7 @@ export const classes: Classes = {
       CLASS_TRAITS.SNEAK_ATTACK,
       CLASS_TRAITS.TRAP_FINDING,
     ],
+    skillPoints: 8,
   },
   paladin: {
     bonusStats: {
@@ -166,6 +169,7 @@ export const classes: Classes = {
       CLASS_TRAITS.DETECT_EVIL,
       CLASS_TRAITS.SMITE_EVIL,
     ],
+    skillPoints: 2,
   },
   cleric: {
     bonusStats: {
@@ -184,6 +188,7 @@ export const classes: Classes = {
       CLASS_TRAITS.SPELLCASTING,
       CLASS_TRAITS.CHANNEL_ENERGY,
     ],
+    skillPoints: 2,
   },
   sorcerer: {
     bonusStats: {
@@ -201,6 +206,7 @@ export const classes: Classes = {
       CLASS_TRAITS.CANTRIPS,
       CLASS_TRAITS.SPELLCASTING,
     ],
+    skillPoints: 2,
   },
   wizard: {
     bonusStats: {
@@ -217,5 +223,6 @@ export const classes: Classes = {
       CLASS_TRAITS.SPELLCASTING,
       CLASS_TRAITS.SCRIBE_SCROLL,
     ],
+    skillPoints: 2,
   },
 };
