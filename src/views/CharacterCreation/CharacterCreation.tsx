@@ -92,7 +92,11 @@ const initialState: ICharacterGenerationState = {
   bonusLanguage: new Map(),
   characterClass: '',
   characterClassTraits: null,
+  favouredClassBonus: '',
+  skillPoints: 0,
 };
+
+localStorage.setItem('pointsSpent', '0');
 
 export default function CharacterCreation(props: ICharacterCreationProps) {
   const { step, nextStep, prevStep, setStep } = useStepper(3, 8);

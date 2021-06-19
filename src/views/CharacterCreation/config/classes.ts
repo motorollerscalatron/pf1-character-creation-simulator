@@ -90,6 +90,50 @@ const CLASS_TRAITS = {
   },
 };
 
+type SkillValue = {
+  label: string;
+  isClassSkill: boolean;
+  abilityType: 'Int' | 'Cha' | 'Str' | 'Dex' | 'Wis';
+  trained: boolean;
+  total: number;
+};
+
+type Skill = 'CLIMB' | 'CRAFT' | 'INTIMIDATE';
+
+type ClassSkills = Record<Skill, SkillValue>;
+
+export const CLASS_SKILLS: ClassSkills = {
+  CLIMB: {
+    label: 'climb',
+    isClassSkill: true,
+    abilityType: 'Str',
+    trained: false,
+    total: 0,
+  },
+  CRAFT: {
+    label: 'craft',
+    isClassSkill: true,
+    abilityType: 'Int',
+    trained: false,
+    total: 200,
+  },
+  INTIMIDATE: {
+    label: 'intimidate',
+    isClassSkill: true,
+    abilityType: 'Cha',
+    trained: false,
+    total: 0,
+  },
+};
+
+type Deity =
+  | 'Torag'
+  | 'Srenrae'
+  | 'Desna'
+  | 'Pharasma'
+  | 'Calistria'
+  | 'Asmodeus';
+
 export type ClassTraits = {
   bonusStats: {
     defense: {
@@ -109,6 +153,8 @@ export type ClassTraits = {
     description: string;
   }[];
   skillPoints: number;
+  classSkills: SkillValue[];
+  deity?: Deity;
 };
 
 type Classes = Record<Lowercase<CharacterClass>, ClassTraits>;
@@ -132,6 +178,11 @@ export const classes: Classes = {
       CLASS_TRAITS.BONUS_FEAT,
     ],
     skillPoints: 2,
+    classSkills: [
+      CLASS_SKILLS.CLIMB,
+      CLASS_SKILLS.CRAFT,
+      CLASS_SKILLS.INTIMIDATE,
+    ],
   },
   rogue: {
     bonusStats: {
@@ -148,6 +199,7 @@ export const classes: Classes = {
       CLASS_TRAITS.TRAP_FINDING,
     ],
     skillPoints: 8,
+    classSkills: [CLASS_SKILLS.CLIMB],
   },
   paladin: {
     bonusStats: {
@@ -170,6 +222,7 @@ export const classes: Classes = {
       CLASS_TRAITS.SMITE_EVIL,
     ],
     skillPoints: 2,
+    classSkills: [CLASS_SKILLS.CRAFT],
   },
   cleric: {
     bonusStats: {
@@ -189,6 +242,7 @@ export const classes: Classes = {
       CLASS_TRAITS.CHANNEL_ENERGY,
     ],
     skillPoints: 2,
+    classSkills: [CLASS_SKILLS.CRAFT],
   },
   sorcerer: {
     bonusStats: {
@@ -207,6 +261,7 @@ export const classes: Classes = {
       CLASS_TRAITS.SPELLCASTING,
     ],
     skillPoints: 2,
+    classSkills: [CLASS_SKILLS.CRAFT, CLASS_SKILLS.INTIMIDATE],
   },
   wizard: {
     bonusStats: {
@@ -224,5 +279,6 @@ export const classes: Classes = {
       CLASS_TRAITS.SCRIBE_SCROLL,
     ],
     skillPoints: 2,
+    classSkills: [CLASS_SKILLS.CRAFT, CLASS_SKILLS.INTIMIDATE],
   },
 };

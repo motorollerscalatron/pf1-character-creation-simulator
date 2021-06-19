@@ -138,7 +138,7 @@ export default function CharacterStats(props: ICharacterStatsProps) {
         <h5 className={styles.abilityHeader}>Class Traits</h5>
         <div className={clsx(styles.previewAbilities)}>
           {previewClassTraits?.map(([label, desc]) => {
-            return <p>{label}, </p>;
+            return <p key={label}>{label}, </p>;
           })}
         </div>
         <h5 className={styles.abilityHeader}>Feats</h5>

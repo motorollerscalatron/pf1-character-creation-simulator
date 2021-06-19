@@ -1,4 +1,3 @@
-import { Updater } from 'use-immer';
 import type { ClassTraits } from './config/classes';
 
 export type UpdateCharacterState = (
@@ -21,8 +20,7 @@ export type Race =
   | 'Elf'
   | 'Half-Orc'
   | 'Dwarf'
-  | 'Halfling'
-  | '';
+  | 'Halfling';
 
 export type CharacterClass =
   | 'Fighter'
@@ -64,6 +62,8 @@ export type BonusAbilityScore = {
   value: number;
   mod: number;
 };
+
+export type FavouredClassBonus = 'hp' | 'skill';
 export type Languages = Omit<Record<Race, string[]>, ''>;
 export type CharacterClassTrait = Record<string, string>;
 export interface ICharacterGenerationState {
@@ -78,11 +78,13 @@ export interface ICharacterGenerationState {
   abilities: Abilities;
   defense: Defense;
   offense: Offense;
-  race: Race;
+  race: Race | '';
   bonusAbilityScore: BonusAbilityScore[];
   bonusLanguage: Map<string, boolean>;
   characterClass: CharacterClass | '';
   characterClassTraits: ClassTraits | null;
+  favouredClassBonus: FavouredClassBonus | '';
+  skillPoints: number;
 }
 
 type Character = Omit<ICharacterGenerationState, 'campaignType'>;

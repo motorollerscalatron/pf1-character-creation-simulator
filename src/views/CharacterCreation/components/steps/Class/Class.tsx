@@ -41,7 +41,8 @@ export default function CharacterClasses(props: ICharacterClassProps) {
   const setCharacterClassChoice = (characterClass: CharacterClassType) => {
     updateCharacterState((draft) => {
       draft.characterClass = characterClass;
-      const lowerCharacterClass = characterClass.toLowerCase();
+      const lowerCharacterClass =
+        characterClass.toLowerCase() as Lowercase<CharacterClassType>;
       //      const lowerCharacterClass = LowerCase<characterClass>;
       console.log('characterClass in setCharacterClassChoice', characterClass);
       console.log(
@@ -49,8 +50,10 @@ export default function CharacterClasses(props: ICharacterClassProps) {
         lowerCharacterClass
       );
 
-      draft.characterClassTraits = classes.fighter;
-      draft.characterClassTraits = classes['fighter'];
+      draft.characterClassTraits = lowerCharacterClass
+        ? classes[lowerCharacterClass]
+        : null;
+      // draft.characterClassTraits = classes['fighter'];
       //      draft.characterClassTraits = characterClass ? classes. : null;
       //      draft.characterClassTraits = characterClass ? classes[lowerCharacterClass] : null;
     });

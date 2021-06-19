@@ -7,10 +7,14 @@ const updateHealth = (characterState: ICharacterGenerationState) => {
   const bonusAbilityConstitution = characterState.bonusAbilityScore.find(
     (item) => item.ability === 'constitution'
   );
+
+  const favouredClassBonusHp =
+    characterState.favouredClassBonus === 'hp' ? 1 : 0;
+
   healthModifier += bonusAbilityConstitution?.mod ?? 0;
 
   characterState.defense.hp.value =
-    characterState.defense.hp.baseValue + healthModifier;
+    characterState.defense.hp.baseValue + healthModifier + favouredClassBonusHp;
 };
 
 const updateAc = (characterState: ICharacterGenerationState) => {
@@ -20,7 +24,11 @@ const updateAc = (characterState: ICharacterGenerationState) => {
 };
 
 export const updateDefense = (characterState: ICharacterGenerationState) => {
-  console.log('in update defense', characterState.abilities.constitution.mod);
+  console.log(
+    'in update defense',
+    characterState.characterClass,
+    characterState.characterClassTraits
+  );
   const dexMod = characterState.abilities.dexterity.mod;
   updateAc(characterState);
   characterState.defense.tac.value =
@@ -38,6 +46,11 @@ export const updateDefense = (characterState: ICharacterGenerationState) => {
 };
 
 export const updateOffense = (characterState: ICharacterGenerationState) => {
+  console.log(
+    'in update offense',
+    characterState.characterClass,
+    characterState.characterClassTraits?.bonusStats
+  );
   const dexMod = characterState.abilities.dexterity.mod;
   characterState.offense.ranged.value = dexMod;
   const strMod = characterState.abilities.strength.mod;

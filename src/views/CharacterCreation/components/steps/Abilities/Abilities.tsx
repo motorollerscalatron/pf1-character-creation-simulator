@@ -21,7 +21,9 @@ export interface IAbilitiesProps {
 export default function Abilities(props: IAbilitiesProps) {
   const { characterState, updateCharacterState } = props;
   const { abilities } = characterState;
-  const [pointsSpent, setPointsSpent] = useState(0);
+  const [pointsSpent, setPointsSpent] = useState(
+    +(localStorage.getItem('pointsSpent') ?? 0)
+  );
 
   const [abilityHovered, setHoveredAbility] = useState<Ability | null>(null);
 
@@ -45,8 +47,9 @@ export default function Abilities(props: IAbilitiesProps) {
         mod,
       };
     });
-
-    setPointsSpent((num) => num + costDifference);
+    const nextPointsSpent = pointsSpent + costDifference;
+    setPointsSpent(nextPointsSpent);
+    localStorage.setItem('pointsSpent', String(nextPointsSpent));
   };
 
   // TODO: add a graphical bar
