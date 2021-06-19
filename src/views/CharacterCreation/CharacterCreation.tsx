@@ -11,7 +11,10 @@ import Equipment from './components/steps/Equipment/Equipment';
 import Details from './components/steps/Details/Details';
 import CharacterStats from './components/CharacterStats/CharacterStats';
 import { useImmer } from 'use-immer';
-import { ICharacterGenerationState } from './characterCreation.types';
+import {
+  ICharacterGenerationState,
+  UpdateCharacterState,
+} from './characterCreation.types';
 import { nameStepValidator } from './components/steps/Name/nameStepValidator';
 import { abilityStepValidator } from './components/steps/Abilities/abilityStepValidator';
 import { raceStepValidator } from './components/steps/Race/raceStepValidator';
@@ -95,9 +98,7 @@ export default function CharacterCreation(props: ICharacterCreationProps) {
   const { step, nextStep, prevStep, setStep } = useStepper(3, 8);
   const [characterState, setCharacterState] = useImmer(initialState);
 
-  const updateCharacterState = (
-    fn: (draft: ICharacterGenerationState) => void
-  ) => {
+  const updateCharacterState: UpdateCharacterState = (fn) => {
     setCharacterState((draft) => {
       fn(draft);
       updateOffense(draft);

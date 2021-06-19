@@ -1,6 +1,9 @@
 import { Updater } from 'use-immer';
 import type { ClassTraits } from './config/classes';
-export type UpdateCharacterState = Updater<ICharacterGenerationState>;
+
+export type UpdateCharacterState = (
+  fn: (draft: ICharacterGenerationState) => void
+) => void;
 
 export type Ability =
   | 'Strength'

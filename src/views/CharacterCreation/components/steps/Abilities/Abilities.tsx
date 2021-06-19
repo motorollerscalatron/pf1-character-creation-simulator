@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Updater } from 'use-immer';
-import { ICharacterGenerationState } from '../../../characterCreation.types';
+import {
+  ICharacterGenerationState,
+  UpdateCharacterState,
+} from '../../../characterCreation.types';
 import StrengthDescription from './components/descriptions/StrengthDescription';
 import DexterityDescription from './components/descriptions/DexterityDescription';
 import ConstitutionDescription from './components/descriptions/ConstitutionDescription';
@@ -13,7 +15,7 @@ import styles from './Abilities.module.css';
 
 export interface IAbilitiesProps {
   characterState: ICharacterGenerationState;
-  updateCharacterState: Updater<ICharacterGenerationState>;
+  updateCharacterState: UpdateCharacterState;
 }
 
 export default function Abilities(props: IAbilitiesProps) {
