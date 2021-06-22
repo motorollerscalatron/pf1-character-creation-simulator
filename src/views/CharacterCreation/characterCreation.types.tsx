@@ -1,5 +1,8 @@
-import { Updater } from 'use-immer';
-export type UpdateCharacterState = Updater<ICharacterGenerationState>;
+import type { ClassTraits } from './config/classes';
+
+export type UpdateCharacterState = (
+  fn: (draft: ICharacterGenerationState) => void
+) => void;
 
 export type Ability =
   | 'Strength'
@@ -17,47 +20,52 @@ export type Race =
   | 'Elf'
   | 'Half-Orc'
   | 'Dwarf'
-  | 'Halfling'
-  | '';
+  | 'Halfling';
 
 export type CharacterClass =
   | 'Fighter'
-  | 'Rouge'
+  | 'Rogue'
   | 'Paladin'
   | 'Cleric'
   | 'Sorcerer'
   | 'Wizard';
 
-export type AbilityValue = {
+export type CharacterClassLower = Lowercase<CharacterClass>;
+
+type BaseStatValue = {
   value: number;
   mod: number;
 };
 
-// type Person = Record<'name' | 'age', string | number>
-// type PersonTwo = {
-//   name: string,
-//   age: number
-// }
+export type AbilityValue = BaseStatValue;
+
 export type Abilities = Record<AbilityLower, AbilityValue>;
+export type OffenseValue = BaseStatValue & { baseValue: number };
+export type DefenseValue = BaseStatValue & { baseValue: number };
+export type Offense = {
+  speed: { baseValue: number; value: number };
+  melee: OffenseValue;
+  ranged: OffenseValue;
+};
+export type Defense = {
+  hp: { baseValue: number; value: number };
+  ac: DefenseValue;
+  tac: DefenseValue;
+  ffac: DefenseValue;
+  reflex: DefenseValue;
+  fortitude: DefenseValue;
+  will: DefenseValue;
+};
+
 export type BonusAbilityScore = {
   ability: AbilityLower | '';
   value: number;
   mod: number;
 };
-/*
 
- {
-    strength: number;
-    dexterity: number;
-    constitution: number;
-    intelligence: number;
-    wisdom: number;
-    charisma: number;
-  }
-  */
-
+export type FavouredClassBonus = 'hp' | 'skill';
 export type Languages = Omit<Record<Race, string[]>, ''>;
-
+export type CharacterClassTrait = Record<string, string>;
 export interface ICharacterGenerationState {
   name: string;
   gender: 'Male' | 'Female' | 'Other' | '';
@@ -68,10 +76,15 @@ export interface ICharacterGenerationState {
     | 'Epic Fantasy'
     | '';
   abilities: Abilities;
-  race: Race;
+  defense: Defense;
+  offense: Offense;
+  race: Race | '';
   bonusAbilityScore: BonusAbilityScore[];
   bonusLanguage: Map<string, boolean>;
   characterClass: CharacterClass | '';
+  characterClassTraits: ClassTraits | null;
+  favouredClassBonus: FavouredClassBonus | '';
+  skillPoints: number;
 }
 
 type Character = Omit<ICharacterGenerationState, 'campaignType'>;

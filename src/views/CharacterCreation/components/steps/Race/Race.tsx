@@ -12,7 +12,6 @@ import {
   BonusAbilityMap,
   RaceWithFixedBonusAbilities,
 } from './Race.types';
-console.log({ races });
 
 const raceMap: Omit<RaceMap, ''> = {
   Human: races.Human,
@@ -50,7 +49,6 @@ export default function CharacterRace(props: ICharacterRaceProps) {
   const { characterState, updateCharacterState } = props;
   const { race } = characterState;
   type RaceType = typeof race;
-  //  const [raceChoice, setRaceChoice] = useState('');
   const setRaceChoice = (race: RaceType) => {
     updateCharacterState((draft) => {
       draft.race = race;
@@ -86,6 +84,7 @@ export default function CharacterRace(props: ICharacterRaceProps) {
             name="race"
             id="select-race-human"
             value="Human"
+            checked={characterState.race === 'Human'}
             onChange={(e) => setRaceChoice('Human')}
           />
           <label htmlFor="select-race-human">Human</label>
@@ -94,6 +93,7 @@ export default function CharacterRace(props: ICharacterRaceProps) {
             name="race"
             id="select-race-half-elf"
             value="Half-Elf"
+            checked={characterState.race === 'Half-Elf'}
             onChange={(e) => setRaceChoice('Half-Elf')}
           />
           <label htmlFor="select-race-half-elf">Half-elf</label>
@@ -102,6 +102,7 @@ export default function CharacterRace(props: ICharacterRaceProps) {
             name="race"
             id="select-race-elf"
             value="Elf"
+            checked={characterState.race === 'Elf'}
             onChange={(e) => setRaceChoice('Elf')}
           />
           <label htmlFor="select-race-elf">Elf</label>
@@ -110,6 +111,7 @@ export default function CharacterRace(props: ICharacterRaceProps) {
             name="race"
             id="select-half-orc"
             value="Half-Orc"
+            checked={characterState.race === 'Half-Orc'}
             onChange={(e) => setRaceChoice('Half-Orc')}
           />
           <label htmlFor="select-race-half-orc">Half-orc</label>
@@ -118,6 +120,7 @@ export default function CharacterRace(props: ICharacterRaceProps) {
             name="race"
             id="select-race-dwarf"
             value="Dwarf"
+            checked={characterState.race === 'Dwarf'}
             onChange={(e) => setRaceChoice('Dwarf')}
           />
           <label htmlFor="select-race-dwarf">Dwarf</label>
@@ -126,6 +129,7 @@ export default function CharacterRace(props: ICharacterRaceProps) {
             name="race"
             id="select-race-halfling"
             value="Halfling"
+            checked={characterState.race === 'Halfling'}
             onChange={(e) => setRaceChoice('Halfling')}
           />
           <label htmlFor="select-race-halfling">Halfling</label>

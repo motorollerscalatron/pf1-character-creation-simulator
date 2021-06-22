@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { Updater } from 'use-immer';
-import { ICharacterGenerationState } from '../../../characterCreation.types';
+import {
+  ICharacterGenerationState,
+  UpdateCharacterState,
+} from '../../../characterCreation.types';
 
 export interface ICharacterNameProps {
   characterState: ICharacterGenerationState;
-  updateCharacterState: Updater<ICharacterGenerationState>;
+  updateCharacterState: UpdateCharacterState;
 }
 
 type Gender = 'Male' | 'Female' | 'Other';

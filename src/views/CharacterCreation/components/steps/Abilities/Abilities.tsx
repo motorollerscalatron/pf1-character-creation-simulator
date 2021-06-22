@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Updater } from 'use-immer';
-import { ICharacterGenerationState } from '../../../characterCreation.types';
+import {
+  ICharacterGenerationState,
+  UpdateCharacterState,
+} from '../../../characterCreation.types';
 import StrengthDescription from './components/descriptions/StrengthDescription';
 import DexterityDescription from './components/descriptions/DexterityDescription';
 import ConstitutionDescription from './components/descriptions/ConstitutionDescription';
@@ -13,18 +15,19 @@ import styles from './Abilities.module.css';
 
 export interface IAbilitiesProps {
   characterState: ICharacterGenerationState;
-  updateCharacterState: Updater<ICharacterGenerationState>;
+  updateCharacterState: UpdateCharacterState;
 }
 
 export default function Abilities(props: IAbilitiesProps) {
   const { characterState, updateCharacterState } = props;
   const { abilities } = characterState;
-  const [pointsSpent, setPointsSpent] = useState(0);
+  const [pointsSpent, setPointsSpent] = useState(
+    +(localStorage.getItem('pointsSpent') ?? 0)
+  );
 
   const [abilityHovered, setHoveredAbility] = useState<Ability | null>(null);
 
   const handleMouseEnter = (ability: Ability) => {
-    console.log(ability);
     setHoveredAbility(ability);
   };
 
@@ -44,7 +47,9 @@ export default function Abilities(props: IAbilitiesProps) {
         mod,
       };
     });
-    setPointsSpent((num) => num + costDifference);
+    const nextPointsSpent = pointsSpent + costDifference;
+    setPointsSpent(nextPointsSpent);
+    localStorage.setItem('pointsSpent', String(nextPointsSpent));
   };
 
   // TODO: add a graphical bar

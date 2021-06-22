@@ -11,11 +11,14 @@ import Equipment from './components/steps/Equipment/Equipment';
 import Details from './components/steps/Details/Details';
 import CharacterStats from './components/CharacterStats/CharacterStats';
 import { useImmer } from 'use-immer';
-import { ICharacterGenerationState } from './characterCreation.types';
+import {
+  ICharacterGenerationState,
+  UpdateCharacterState,
+} from './characterCreation.types';
 import { nameStepValidator } from './components/steps/Name/nameStepValidator';
 import { abilityStepValidator } from './components/steps/Abilities/abilityStepValidator';
 import { raceStepValidator } from './components/steps/Race/raceStepValidator';
-
+import { updateOffense, updateDefense } from './service/characterStateService';
 const { useState } = React;
 export interface ICharacterCreationProps {}
 
@@ -58,6 +61,26 @@ const initialState: ICharacterGenerationState = {
     wisdom: { value: 10, mod: 0 },
     charisma: { value: 10, mod: 0 },
   },
+  defense: {
+    hp: {
+      baseValue: 6,
+      value: 6,
+    },
+    ac: { baseValue: 10, value: 10, mod: 0 },
+    tac: { baseValue: 10, value: 10, mod: 0 },
+    ffac: { baseValue: 10, value: 10, mod: 0 },
+    reflex: { baseValue: 0, value: 0, mod: 0 },
+    fortitude: { baseValue: 0, value: 0, mod: 0 },
+    will: { baseValue: 0, value: 0, mod: 0 },
+  },
+  offense: {
+    speed: {
+      baseValue: 30,
+      value: 30,
+    },
+    melee: { baseValue: 0, value: 0, mod: 0 },
+    ranged: { baseValue: 0, value: 0, mod: 0 },
+  },
   race: '',
   bonusAbilityScore: [
     {
@@ -68,11 +91,25 @@ const initialState: ICharacterGenerationState = {
   ],
   bonusLanguage: new Map(),
   characterClass: '',
+  characterClassTraits: null,
+  favouredClassBonus: '',
+  skillPoints: 0,
 };
+
+localStorage.setItem('pointsSpent', '0');
 
 export default function CharacterCreation(props: ICharacterCreationProps) {
   const { step, nextStep, prevStep, setStep } = useStepper(3, 8);
-  const [characterState, updateCharacterState] = useImmer(initialState);
+  const [characterState, setCharacterState] = useImmer(initialState);
+
+  const updateCharacterState: UpdateCharacterState = (fn) => {
+    setCharacterState((draft) => {
+      fn(draft);
+      updateOffense(draft);
+      updateDefense(draft);
+    });
+  };
+
   console.log({ characterState });
   const CurrentComponent = componentsMap[step];
 
@@ -102,7 +139,6 @@ export default function CharacterCreation(props: ICharacterCreationProps) {
 
         <section className="col-span-9 space-y-8">
           <div>
-            {/*<CurrentComponent characterState={characterState} />*/}
             <CurrentComponent
               characterState={characterState}
               updateCharacterState={updateCharacterState}
