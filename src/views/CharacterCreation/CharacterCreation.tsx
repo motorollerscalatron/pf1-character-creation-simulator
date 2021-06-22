@@ -99,7 +99,7 @@ const initialState: ICharacterGenerationState = {
 localStorage.setItem('pointsSpent', '0');
 
 export default function CharacterCreation(props: ICharacterCreationProps) {
-  const { step, nextStep, prevStep, setStep } = useStepper(3, 8);
+  const { step, nextStep, prevStep, setStep } = useStepper(1, 8);
   const [characterState, setCharacterState] = useImmer(initialState);
 
   const updateCharacterState: UpdateCharacterState = (fn) => {
