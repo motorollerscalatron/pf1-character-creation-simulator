@@ -5,8 +5,8 @@ export interface IElfProps {}
 export function Elf(props: IElfProps) {
   return (
     <div>
-      <h2>Elf</h2>
-      <p>
+      <h2 className="text-left">Elf</h2>
+      <p className="text-left">
         Elves possess a graceful, slender physique that is accentuated by their
         long, pointed ears. It is a mistake, however, to consider them weak or
         feeble, as the thin limbs of an elf can contain surprising power. The

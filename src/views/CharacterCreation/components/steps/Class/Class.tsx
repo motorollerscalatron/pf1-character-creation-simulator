@@ -28,22 +28,13 @@ export default function CharacterClasses(props: ICharacterClassProps) {
   const { characterClass, characterClassTraits } = characterState;
 
   type CharacterClassTraitsType = typeof characterClassTraits;
-  // const setCharacterClassTraits = (
-  //   characterClassTraits: CharacterClassTraitsType
-  // ) => {
-  //   updateCharacterState((draft) => {
-  //     draft.characterClassTraits = characterClassTraits;
-  //   });
-  // };
 
   type CharacterClassType = typeof characterClass;
-  //  type CharacterClassLowerType = typeof characterClass.toLowerCase;
   const setCharacterClassChoice = (characterClass: CharacterClassType) => {
     updateCharacterState((draft) => {
       draft.characterClass = characterClass;
       const lowerCharacterClass =
         characterClass.toLowerCase() as Lowercase<CharacterClassType>;
-      //      const lowerCharacterClass = LowerCase<characterClass>;
       console.log('characterClass in setCharacterClassChoice', characterClass);
       console.log(
         'lowerCharacterClass in setCharacterClassChoice',
@@ -53,9 +44,6 @@ export default function CharacterClasses(props: ICharacterClassProps) {
       draft.characterClassTraits = lowerCharacterClass
         ? classes[lowerCharacterClass]
         : null;
-      // draft.characterClassTraits = classes['fighter'];
-      //      draft.characterClassTraits = characterClass ? classes. : null;
-      //      draft.characterClassTraits = characterClass ? classes[lowerCharacterClass] : null;
     });
   };
 

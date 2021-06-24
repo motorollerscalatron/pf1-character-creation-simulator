@@ -4,7 +4,8 @@ import {
   UpdateCharacterState,
   Race,
 } from '../../../characterCreation.types';
-import * as races from './components/races';
+import * as raceChoices from './components/races';
+import { races } from '../../../config/races';
 import { AbilitiesMapItem } from './components/SelectAbilityScore/SelectAbilityScore';
 import SelectBonusLanguages from './components/races/SelectBonusLanguages/SelectBonusLanguages';
 import {
@@ -12,14 +13,15 @@ import {
   BonusAbilityMap,
   RaceWithFixedBonusAbilities,
 } from './Race.types';
+import RacialTraits from './components/races/RacialTraits/RacialTraits';
 
 const raceMap: Omit<RaceMap, ''> = {
-  Human: races.Human,
-  Elf: races.Elf,
-  Halfling: races.Halfling,
-  Dwarf: races.Dwarf,
-  'Half-Elf': races.HalfElf,
-  'Half-Orc': races.HalfOrc,
+  Human: raceChoices.Human,
+  Elf: raceChoices.Elf,
+  Halfling: raceChoices.Halfling,
+  Dwarf: raceChoices.Dwarf,
+  'Half-Elf': raceChoices.HalfElf,
+  'Half-Orc': raceChoices.HalfOrc,
 };
 
 const bonusAbilityMap: BonusAbilityMap = {
@@ -49,8 +51,11 @@ export default function CharacterRace(props: ICharacterRaceProps) {
   const { characterState, updateCharacterState } = props;
   const { race } = characterState;
   type RaceType = typeof race;
+  //  const lowerCaseRace = race.toLowerCase() as Lowercase<RaceType>;
+
   const setRaceChoice = (race: RaceType) => {
     updateCharacterState((draft) => {
+      const lowerCaseRace = race.toLowerCase() as Lowercase<RaceType>;
       draft.race = race;
       draft.bonusLanguage.clear();
       if (race in bonusAbilityMap) {
@@ -67,6 +72,7 @@ export default function CharacterRace(props: ICharacterRaceProps) {
       } else {
         draft.bonusAbilityScore = [];
       }
+      draft.characterRaceTraits = lowerCaseRace ? races[lowerCaseRace] : null;
     });
   };
 
@@ -145,6 +151,9 @@ export default function CharacterRace(props: ICharacterRaceProps) {
         characterState={characterState}
         updateCharacterState={updateCharacterState}
       />
+      <div>
+        <RacialTraits characterState={characterState} />
+      </div>
     </div>
   );
 }

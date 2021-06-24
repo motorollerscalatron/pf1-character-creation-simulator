@@ -1,4 +1,5 @@
 import type { ClassTraits } from './config/classes';
+import type { RaceTraits } from './config/races';
 
 export type UpdateCharacterState = (
   fn: (draft: ICharacterGenerationState) => void
@@ -83,6 +84,7 @@ export interface ICharacterGenerationState {
   bonusLanguage: Map<string, boolean>;
   characterClass: CharacterClass | '';
   characterClassTraits: ClassTraits | null;
+  characterRaceTraits: RaceTraits | null;
   favouredClassBonus: FavouredClassBonus | '';
   skillPoints: number;
 }

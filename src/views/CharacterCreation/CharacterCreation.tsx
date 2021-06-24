@@ -92,6 +92,7 @@ const initialState: ICharacterGenerationState = {
   bonusLanguage: new Map(),
   characterClass: '',
   characterClassTraits: null,
+  characterRaceTraits: null,
   favouredClassBonus: '',
   skillPoints: 0,
 };

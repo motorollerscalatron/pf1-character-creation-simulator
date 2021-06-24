@@ -15,8 +15,8 @@ export function Human(props: IHumanProps) {
   const { race } = characterState;
   return (
     <div>
-      <h2>Human</h2>
-      <p>
+      <h2 className="text-left">Human</h2>
+      <p className="text-left">
         Humans are perhaps the most diverse of all the common races, with a
         capacity for both great evil and boundless good. Some humans assemble
         into vast barbaric hordes, while others build sprawling cities that
