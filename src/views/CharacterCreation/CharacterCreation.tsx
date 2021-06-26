@@ -19,6 +19,7 @@ import { nameStepValidator } from './components/steps/Name/nameStepValidator';
 import { abilityStepValidator } from './components/steps/Abilities/abilityStepValidator';
 import { raceStepValidator } from './components/steps/Race/raceStepValidator';
 import { updateOffense, updateDefense } from './service/characterStateService';
+import { classStepValidator } from './components/steps/Class/classStepValidator';
 const { useState } = React;
 export interface ICharacterCreationProps {}
 
@@ -31,8 +32,8 @@ const componentsMap: ComponentsMap = {
   2: Abilities,
   3: Race,
   4: Class,
-  /*
   5: Skills,
+  /*
   6: Feats,
   7: Equipment,
   8: Details,
@@ -47,6 +48,7 @@ const stepValidators: StepValidators = {
   1: nameStepValidator,
   2: abilityStepValidator,
   3: raceStepValidator,
+  4: classStepValidator,
 };
 
 const initialState: ICharacterGenerationState = {
@@ -95,6 +97,7 @@ const initialState: ICharacterGenerationState = {
   characterRaceTraits: null,
   favouredClassBonus: '',
   skillPoints: 0,
+  characterTrainedSkills: {},
 };
 
 localStorage.setItem('pointsSpent', '0');

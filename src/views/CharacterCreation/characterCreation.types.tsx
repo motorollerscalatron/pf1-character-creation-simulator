@@ -1,4 +1,4 @@
-import type { ClassTraits } from './config/classes';
+import type { ClassTraits, Skill } from './config/classes';
 import type { RaceTraits } from './config/races';
 
 export type UpdateCharacterState = (
@@ -14,7 +14,7 @@ export type Ability =
   | 'Charisma';
 
 export type AbilityLower = Lowercase<Ability>;
-
+export type AbilityShortKey = 'Cha' | 'Str' | 'Int' | 'Wis' | 'Dex' | 'Con';
 export type Race =
   | 'Human'
   | 'Half-Elf'
@@ -87,6 +87,7 @@ export interface ICharacterGenerationState {
   characterRaceTraits: RaceTraits | null;
   favouredClassBonus: FavouredClassBonus | '';
   skillPoints: number;
+  characterTrainedSkills: Partial<Record<Skill, boolean>>;
 }
 
 type Character = Omit<ICharacterGenerationState, 'campaignType'>;

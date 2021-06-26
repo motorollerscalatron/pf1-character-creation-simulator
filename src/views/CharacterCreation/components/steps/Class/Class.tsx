@@ -42,7 +42,12 @@ export default function CharacterClasses(props: ICharacterClassProps) {
       );
 
       draft.characterClassTraits = lowerCharacterClass
-        ? classes[lowerCharacterClass]
+        ? {
+            ...classes[lowerCharacterClass],
+            classSkills: classes[lowerCharacterClass].classSkills.map(
+              (skill) => ({ ...skill, isClassSkill: true })
+            ),
+          }
         : null;
     });
   };
