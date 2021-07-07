@@ -1,3 +1,6 @@
 .abilityDescriptions {
   @apply text-left;
 }
+.abilityControls {
+  margin-bottom: 20px;
+}

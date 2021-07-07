@@ -126,8 +126,19 @@ export default function CharacterCreation(props: ICharacterCreationProps) {
     const isStepComplete = validator(characterState);
 
     if (!isStepComplete) {
-      alert('Please complete all the fields!');
-      return;
+      switch (step) {
+        case 1: {
+          alert('Please complete all the fields!');
+          return;
+        }
+        case 2: {
+          alert('You have spent too many points on your abilities!');
+          return;
+        }
+        default: {
+          break;
+        }
+      }
     }
     nextStep();
   };

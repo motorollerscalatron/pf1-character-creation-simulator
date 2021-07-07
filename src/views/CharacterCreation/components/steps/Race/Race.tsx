@@ -79,66 +79,91 @@ export default function CharacterRace(props: ICharacterRaceProps) {
   const SelectedRaceContent = race ? raceMap[race] : null;
 
   return (
-    <div>
-      <div className="content">
-        <h4>Select a Race.</h4>
-      </div>
-      <div className="radio-toolbar select-race content">
-        <div>
-          <input
-            type="radio"
-            name="race"
-            id="select-race-human"
-            value="Human"
-            checked={characterState.race === 'Human'}
-            onChange={(e) => setRaceChoice('Human')}
-          />
-          <label htmlFor="select-race-human">Human</label>
-          <input
-            type="radio"
-            name="race"
-            id="select-race-half-elf"
-            value="Half-Elf"
-            checked={characterState.race === 'Half-Elf'}
-            onChange={(e) => setRaceChoice('Half-Elf')}
-          />
-          <label htmlFor="select-race-half-elf">Half-elf</label>
-          <input
-            type="radio"
-            name="race"
-            id="select-race-elf"
-            value="Elf"
-            checked={characterState.race === 'Elf'}
-            onChange={(e) => setRaceChoice('Elf')}
-          />
-          <label htmlFor="select-race-elf">Elf</label>
-          <input
-            type="radio"
-            name="race"
-            id="select-half-orc"
-            value="Half-Orc"
-            checked={characterState.race === 'Half-Orc'}
-            onChange={(e) => setRaceChoice('Half-Orc')}
-          />
-          <label htmlFor="select-race-half-orc">Half-orc</label>
-          <input
-            type="radio"
-            name="race"
-            id="select-race-dwarf"
-            value="Dwarf"
-            checked={characterState.race === 'Dwarf'}
-            onChange={(e) => setRaceChoice('Dwarf')}
-          />
-          <label htmlFor="select-race-dwarf">Dwarf</label>
-          <input
-            type="radio"
-            name="race"
-            id="select-race-halfling"
-            value="Halfling"
-            checked={characterState.race === 'Halfling'}
-            onChange={(e) => setRaceChoice('Halfling')}
-          />
-          <label htmlFor="select-race-halfling">Halfling</label>
+    <div className="px-12">
+      <div className="shadow rounded-sm">
+        <div className="content">
+          <h4>Select a Race.</h4>
+        </div>
+        <div className="radio-toolbar select-race content">
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <input
+                className="radio-button hidden"
+                type="radio"
+                name="race"
+                id="select-race-human"
+                value="Human"
+                checked={characterState.race === 'Human'}
+                onChange={(e) => setRaceChoice('Human')}
+              />
+              <label htmlFor="select-race-human">Human</label>
+            </div>
+
+            <div>
+              <input
+                className="radio-button hidden"
+                type="radio"
+                name="race"
+                id="select-race-half-elf"
+                value="Half-Elf"
+                checked={characterState.race === 'Half-Elf'}
+                onChange={(e) => setRaceChoice('Half-Elf')}
+              />
+              <label htmlFor="select-race-half-elf">Half-elf</label>
+            </div>
+
+            <div>
+              <input
+                className="radio-button hidden"
+                type="radio"
+                name="race"
+                id="select-race-elf"
+                value="Elf"
+                checked={characterState.race === 'Elf'}
+                onChange={(e) => setRaceChoice('Elf')}
+              />
+              <label htmlFor="select-race-elf">Elf</label>
+            </div>
+
+            <div>
+              <input
+                className="radio-button hidden"
+                type="radio"
+                name="race"
+                id="select-race-half-orc"
+                value="Half-Orc"
+                checked={characterState.race === 'Half-Orc'}
+                onChange={(e) => setRaceChoice('Half-Orc')}
+              />
+              <label htmlFor="select-race-half-orc">Half-orc</label>
+            </div>
+
+            <div>
+              <input
+                className="radio-button hidden"
+                type="radio"
+                name="race"
+                id="select-race-dwarf"
+                value="Dwarf"
+                checked={characterState.race === 'Dwarf'}
+                onChange={(e) => setRaceChoice('Dwarf')}
+              />
+              <label htmlFor="select-race-dwarf">Dwarf</label>
+            </div>
+
+            <div>
+              <input
+                className="radio-button hidden"
+                type="radio"
+                name="race"
+                id="select-race-halfling"
+                value="Halfling"
+                checked={characterState.race === 'Halfling'}
+                onChange={(e) => setRaceChoice('Halfling')}
+              />
+              <label htmlFor="select-race-halfling">Halfling</label>
+            </div>
+          </div>
         </div>
       </div>
       {SelectedRaceContent ? (
