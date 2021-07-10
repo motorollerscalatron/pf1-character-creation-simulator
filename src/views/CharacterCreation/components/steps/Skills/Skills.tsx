@@ -9,6 +9,7 @@ import {
   AbilityShortKey,
   ICharacterGenerationState,
   UpdateCharacterState,
+  CharacterClass,
 } from '@/views/CharacterCreation/characterCreation.types';
 export interface ICharacterSkillsProps {
   characterState: ICharacterGenerationState;
@@ -29,6 +30,8 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
   const class_skills = Object.entries(CLASS_SKILLS) as [Skill, SkillValue][];
   const { characterState, updateCharacterState } = props;
   const { characterClassTraits } = characterState;
+  const maxSkillPoints = characterState.characterClassTraits?.skillPoints || 0;
+
   const onChangeSkillTrained = (
     e: React.ChangeEvent<HTMLInputElement>,
     skill: Skill
@@ -40,6 +43,13 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
     // skill.trained = !skill.trained;
   };
 
+  const numOfSelectedSkills = Object.entries(
+    characterState.characterTrainedSkills
+  ).filter((item) => {
+    const [skill, isTrained] = item as [Skill, boolean];
+    return isTrained;
+  }).length;
+  console.log('trained skills num', numOfSelectedSkills, 'max', maxSkillPoints);
   console.log('characterState in skills', characterState);
   return (
     <div>
@@ -55,7 +65,6 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
               <th>Ability</th>
               <th>Mod</th>
               <th>Trained?</th>
-              <th>Total</th>
             </tr>
           </thead>
           <tbody>
@@ -93,6 +102,10 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
                     <input
                       type="checkbox"
                       checked={characterState.characterTrainedSkills[skill]}
+                      disabled={
+                        !characterState.characterTrainedSkills[skill] &&
+                        numOfSelectedSkills >= maxSkillPoints
+                      }
                       onChange={(e) => onChangeSkillTrained(e, skill)}
                     ></input>
                   </td>

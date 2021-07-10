@@ -20,6 +20,8 @@ import { abilityStepValidator } from './components/steps/Abilities/abilityStepVa
 import { raceStepValidator } from './components/steps/Race/raceStepValidator';
 import { updateOffense, updateDefense } from './service/characterStateService';
 import { classStepValidator } from './components/steps/Class/classStepValidator';
+import { skillStepValidator } from './components/steps/Skills/skillStepValidator';
+
 const { useState } = React;
 export interface ICharacterCreationProps {}
 
@@ -33,8 +35,8 @@ const componentsMap: ComponentsMap = {
   3: Race,
   4: Class,
   5: Skills,
-  /*
   6: Feats,
+  /*
   7: Equipment,
   8: Details,
   */
@@ -49,6 +51,7 @@ const stepValidators: StepValidators = {
   2: abilityStepValidator,
   3: raceStepValidator,
   4: classStepValidator,
+  5: skillStepValidator,
 };
 
 const initialState: ICharacterGenerationState = {
