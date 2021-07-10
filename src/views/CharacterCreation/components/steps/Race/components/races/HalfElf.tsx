@@ -14,8 +14,8 @@ export function HalfElf(props: IHalfElfProps) {
   const { characterState, updateCharacterState } = props;
   return (
     <div>
-      <h2>Half-Elf</h2>
-      <p>
+      <h2 className="text-left">Half-Elf</h2>
+      <p className="text-left">
         Half-elves originally were the results of interracial human-elf
         relationships but have developed into a true-breeding race since then.
       </p>

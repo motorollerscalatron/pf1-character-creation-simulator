@@ -60,9 +60,9 @@ export default function Abilities(props: IAbilitiesProps) {
     <div>
       <h1>Abilities</h1>
       <div className="text-center">Points Spent {pointsSpent} / 15</div>
-      <div className="shadow">
+      <div className="shadow rounded-md">
         <div className="grid grid-cols-2 gap-4">
-          <table className="ability-controls">
+          <table className={styles.abilityControls}>
             <thead>
               <tr>
                 <th>Ability</th>

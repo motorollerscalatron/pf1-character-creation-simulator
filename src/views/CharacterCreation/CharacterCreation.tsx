@@ -19,6 +19,9 @@ import { nameStepValidator } from './components/steps/Name/nameStepValidator';
 import { abilityStepValidator } from './components/steps/Abilities/abilityStepValidator';
 import { raceStepValidator } from './components/steps/Race/raceStepValidator';
 import { updateOffense, updateDefense } from './service/characterStateService';
+import { classStepValidator } from './components/steps/Class/classStepValidator';
+import { skillStepValidator } from './components/steps/Skills/skillStepValidator';
+
 const { useState } = React;
 export interface ICharacterCreationProps {}
 
@@ -31,9 +34,9 @@ const componentsMap: ComponentsMap = {
   2: Abilities,
   3: Race,
   4: Class,
-  /*
   5: Skills,
   6: Feats,
+  /*
   7: Equipment,
   8: Details,
   */
@@ -47,6 +50,8 @@ const stepValidators: StepValidators = {
   1: nameStepValidator,
   2: abilityStepValidator,
   3: raceStepValidator,
+  4: classStepValidator,
+  5: skillStepValidator,
 };
 
 const initialState: ICharacterGenerationState = {
@@ -92,14 +97,16 @@ const initialState: ICharacterGenerationState = {
   bonusLanguage: new Map(),
   characterClass: '',
   characterClassTraits: null,
+  characterRaceTraits: null,
   favouredClassBonus: '',
   skillPoints: 0,
+  characterTrainedSkills: {},
 };
 
 localStorage.setItem('pointsSpent', '0');
 
 export default function CharacterCreation(props: ICharacterCreationProps) {
-  const { step, nextStep, prevStep, setStep } = useStepper(3, 8);
+  const { step, nextStep, prevStep, setStep } = useStepper(1, 8);
   const [characterState, setCharacterState] = useImmer(initialState);
 
   const updateCharacterState: UpdateCharacterState = (fn) => {
@@ -122,8 +129,19 @@ export default function CharacterCreation(props: ICharacterCreationProps) {
     const isStepComplete = validator(characterState);
 
     if (!isStepComplete) {
-      alert('Please complete all the fields!');
-      return;
+      switch (step) {
+        case 1: {
+          alert('Please complete all the fields!');
+          return;
+        }
+        case 2: {
+          alert('You have spent too many points on your abilities!');
+          return;
+        }
+        default: {
+          break;
+        }
+      }
     }
     nextStep();
   };

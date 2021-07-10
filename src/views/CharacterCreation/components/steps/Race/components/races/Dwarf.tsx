@@ -5,8 +5,8 @@ export interface IDwarfProps {}
 export function Dwarf(props: IDwarfProps) {
   return (
     <div>
-      <h2>Dwarf</h2>
-      <p>
+      <h2 className="text-left">Dwarf</h2>
+      <p className="text-left">
         A dwarf is a stout humanoid, usually a head shorter than their human
         counterparts, but much broader. They have thick, heavy bones, tightly
         packed muscular sinew, and stability unmatched by other races. This bulk
