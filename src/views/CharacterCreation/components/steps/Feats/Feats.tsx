@@ -23,7 +23,7 @@ export default function CharacterFeats(props: ICharacterFeatsProps) {
             return (
               <div key={feat}>
                 <p>
-                  <input type="checkbox" /> {label}
+                  <input type="checkbox" /> {label} : {description}
                 </p>
               </div>
             );
@@ -32,7 +32,19 @@ export default function CharacterFeats(props: ICharacterFeatsProps) {
       </div>
       <div>
         <h3>Skill Feats</h3>
-        <div></div>
+        <div>
+          {Object.entries(SKILL_FEATS).map((skill_feat) => {
+            const [feat, featValue] = skill_feat as [Feat, FeatValue];
+            const { label, description, type } = featValue;
+            return (
+              <div key={feat}>
+                <p>
+                  <input type="checkbox" /> {label}: {description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

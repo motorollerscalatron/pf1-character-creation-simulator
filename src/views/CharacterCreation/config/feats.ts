@@ -1,8 +1,18 @@
 export type Feat =
   | 'AGILE_MANUVERS'
   | 'ARCANE_STRIKE'
+  | 'CATCH_OFF_GUARD'
+  | 'COMBAT_EXPERTISE'
   | 'ACROBATIC'
-  | 'ALERTNESS';
+  | 'ALERTNESS'
+  | 'ANIMAL_AFFINITY'
+  | 'ATHLETIC'
+  | 'DECEITFUL'
+  | 'DEFT_HANDS'
+  | 'MAGICAL_APTITUDE'
+  | 'PERSUASIVE'
+  | 'SELF_SUFFICIANT'
+  | 'STEALTHY';
 type FeatType = 'combat' | 'skill';
 
 export type FeatValue = {
@@ -15,22 +25,74 @@ type Feats = Record<Feat, FeatValue>;
 export const FEATS: Feats = {
   AGILE_MANUVERS: {
     label: 'Agile Manuvers',
-    description: '',
+    description:
+      'Use your Dex bonus when calculating your Combat Manuever Bonus',
     type: 'combat',
   },
   ARCANE_STRIKE: {
     label: 'Arcane Strike',
-    description: '',
+    description: '+1 damage and weapons are considered magic',
+    type: 'combat',
+  },
+  CATCH_OFF_GUARD: {
+    label: 'Catch Off-Guard',
+    description: 'no penalties for improvised melee weapons',
+    type: 'combat',
+  },
+  COMBAT_EXPERTISE: {
+    label: 'Combat Expertise',
+    description:
+      'Choose to take a –1 penalty on melee attacks to gain a +1 dodge bonus to your AC until your next turn.',
     type: 'combat',
   },
   ACROBATIC: {
     label: 'Acrobatic',
-    description: '',
+    description: '+2 to Acrobatics and Fly Checks',
     type: 'skill',
   },
   ALERTNESS: {
     label: 'Alertness',
-    description: '',
+    description: '+2 to Perception and Sense Motive Checks',
+    type: 'skill',
+  },
+  ANIMAL_AFFINITY: {
+    label: 'Animal Affinity',
+    description: '+2 to Perception and Sense Motive Checks',
+    type: 'skill',
+  },
+  ATHLETIC: {
+    label: 'Athletic',
+    description: '+2 to Climb and Swim Checks',
+    type: 'skill',
+  },
+  DECEITFUL: {
+    label: 'Deceitful',
+    description: '+2 to Bluff and Disguise Checks',
+    type: 'skill',
+  },
+  DEFT_HANDS: {
+    label: 'Deft Hands',
+    description: '+2 to Disable Device and Sleight of Hand Checks',
+    type: 'skill',
+  },
+  MAGICAL_APTITUDE: {
+    label: 'Magical Aptitude',
+    description: '+2 to Spellcraft and Use Magic Device Checks',
+    type: 'skill',
+  },
+  PERSUASIVE: {
+    label: 'Persuasive',
+    description: '+2 to Diplomacy and Intimidate Checks',
+    type: 'skill',
+  },
+  SELF_SUFFICIANT: {
+    label: 'Self-Sufficiant',
+    description: '+2 to Heal and Survival Checks',
+    type: 'skill',
+  },
+  STEALTHY: {
+    label: 'Stealthy',
+    description: '+2 to Escape Artist and Stealth Checks',
     type: 'skill',
   },
 };
