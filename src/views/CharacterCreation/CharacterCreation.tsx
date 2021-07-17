@@ -101,6 +101,7 @@ const initialState: ICharacterGenerationState = {
   favouredClassBonus: '',
   skillPoints: 0,
   characterTrainedSkills: {},
+  characterFeats: {},
 };
 
 localStorage.setItem('pointsSpent', '0');

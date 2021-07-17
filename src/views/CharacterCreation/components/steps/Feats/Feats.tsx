@@ -1,3 +1,8 @@
+import {
+  ICharacterGenerationState,
+  UpdateCharacterState,
+} from '@/views/CharacterCreation/characterCreation.types';
+
 import * as React from 'react';
 import {
   COMBAT_FEATS,
@@ -6,9 +11,25 @@ import {
   FeatValue,
 } from '../../../config/feats';
 
-export interface ICharacterFeatsProps {}
+export interface ICharacterFeatsProps {
+  characterState: ICharacterGenerationState;
+  updateCharacterState: UpdateCharacterState;
+}
 
 export default function CharacterFeats(props: ICharacterFeatsProps) {
+  const { characterState, updateCharacterState } = props;
+
+  const onChangeFeats = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    feat: Feat
+  ) => {
+    const isFeatChecked = e.target.checked;
+    updateCharacterState((draft) => {
+      draft.characterFeats[feat] = isFeatChecked;
+      console.log('on update feat', characterState, isFeatChecked);
+    });
+  };
+  console.log({ characterState });
   return (
     <div>
       <div>Character Feats</div>
@@ -39,7 +60,12 @@ export default function CharacterFeats(props: ICharacterFeatsProps) {
             return (
               <div key={feat}>
                 <p>
-                  <input type="checkbox" /> {label}: {description}
+                  <input
+                    type="checkbox"
+                    checked={characterState.characterFeats[feat]}
+                    onChange={(e) => onChangeFeats(e, feat)}
+                  />{' '}
+                  {label}: {description}
                 </p>
               </div>
             );

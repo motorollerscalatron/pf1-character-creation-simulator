@@ -1,4 +1,5 @@
 import type { ClassTraits, Skill } from './config/classes';
+import type { Feat } from './config/feats';
 import type { RaceTraits } from './config/races';
 
 export type UpdateCharacterState = (
@@ -88,6 +89,7 @@ export interface ICharacterGenerationState {
   favouredClassBonus: FavouredClassBonus | '';
   skillPoints: number;
   characterTrainedSkills: Partial<Record<Skill, boolean>>;
+  characterFeats: Partial<Record<Feat, boolean>>;
 }
 
 type Character = Omit<ICharacterGenerationState, 'campaignType'>;

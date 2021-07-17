@@ -65,6 +65,7 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
               <th>Ability</th>
               <th>Mod</th>
               <th>Trained?</th>
+              <th>Total</th>
             </tr>
           </thead>
           <tbody>
@@ -84,18 +85,21 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
                   (bonusAbility) => bonusAbility.ability == abilityKey
                 )?.mod || 0;
               const modSum = defaultMod + bonusAbilityMod;
+              const isClassSkill = characterClassTraits?.classSkills.find(
+                (classSkill) =>
+                  classSkill.isClassSkill && classSkill.label === label
+              );
+
+              const classSkillTotalBonus = isClassSkill ? 3 : 0;
+              const trained = characterState.characterTrainedSkills[skill]
+                ? 1 + classSkillTotalBonus
+                : 0;
+              const total = modSum + trained;
 
               return (
                 <tr key={index}>
                   <td>{label}</td>
-                  <td>
-                    {characterClassTraits?.classSkills.find(
-                      (classSkill) =>
-                        classSkill.isClassSkill && classSkill.label === label
-                    )
-                      ? 'Class Skill'
-                      : ''}
-                  </td>
+                  <td>{isClassSkill ? 'Class Skill' : ''}</td>
                   <td>{abilityType}</td>
                   <td>{Math.sign(modSum) > 0 ? `+${modSum}` : modSum}</td>
                   <td>
@@ -109,6 +113,7 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
                       onChange={(e) => onChangeSkillTrained(e, skill)}
                     ></input>
                   </td>
+                  <td>{total}</td>
                 </tr>
               );
             })}

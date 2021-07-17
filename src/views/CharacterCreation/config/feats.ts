@@ -1,3 +1,9 @@
+import { Skill, CLASS_SKILLS } from '@/views/CharacterCreation/config/classes';
+import {
+  Offense,
+  Defense,
+} from '@/views/CharacterCreation/characterCreation.types';
+
 export type Feat =
   | 'AGILE_MANUVERS'
   | 'ARCANE_STRIKE'
@@ -14,13 +20,19 @@ export type Feat =
   | 'SELF_SUFFICIANT'
   | 'STEALTHY';
 type FeatType = 'combat' | 'skill';
-
 export type FeatValue = {
   label: string;
   description: string;
   type: FeatType;
+  bonus?: {
+    combat?: {
+      offense?: Partial<Record<keyof Offense, number>>;
+      defense?: Partial<Record<keyof Defense, number>>;
+    };
+    skill?: Partial<Record<Lowercase<Skill>, number>>;
+  };
 };
-type Feats = Record<Feat, FeatValue>;
+export type Feats = Record<Feat, FeatValue>;
 
 export const FEATS: Feats = {
   AGILE_MANUVERS: {
@@ -28,6 +40,31 @@ export const FEATS: Feats = {
     description:
       'Use your Dex bonus when calculating your Combat Manuever Bonus',
     type: 'combat',
+    bonus: {
+      combat: {
+        offense: {
+          melee: 1,
+        },
+        defense: {
+          ac: -1,
+        },
+      },
+      skill: {},
+    },
+    // bonus: {
+    //   combat: {
+    //     offense: {
+    //       melee: -1
+    //     },
+    //     defense: {
+    //       ac: 1
+    //     }
+    //   },
+    //   skill: {
+    //     ACROBATICS: 2
+    //     FLY_CHECKS: 2
+    //   }
+    // }
   },
   ARCANE_STRIKE: {
     label: 'Arcane Strike',
@@ -49,6 +86,11 @@ export const FEATS: Feats = {
     label: 'Acrobatic',
     description: '+2 to Acrobatics and Fly Checks',
     type: 'skill',
+    bonus: {
+      skill: {
+        [CLASS_SKILLS.ACROBATICS.label]: 2,
+      },
+    },
   },
   ALERTNESS: {
     label: 'Alertness',
