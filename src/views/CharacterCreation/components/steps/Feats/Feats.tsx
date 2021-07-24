@@ -26,7 +26,7 @@ export default function CharacterFeats(props: ICharacterFeatsProps) {
     const isFeatChecked = e.target.checked;
     updateCharacterState((draft) => {
       draft.characterFeats[feat] = isFeatChecked;
-      console.log('on update feat', characterState, isFeatChecked);
+      // console.log('on update feat', characterState, isFeatChecked);
     });
   };
   console.log({ characterState });
@@ -39,7 +39,6 @@ export default function CharacterFeats(props: ICharacterFeatsProps) {
         <div>
           {Object.entries(COMBAT_FEATS).map((combat_feat) => {
             const [feat, featValue] = combat_feat as [Feat, FeatValue];
-            console.log(featValue);
             const { label, description, type } = featValue;
             return (
               <div key={feat}>

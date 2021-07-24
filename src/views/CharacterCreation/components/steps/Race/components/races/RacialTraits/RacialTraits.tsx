@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ICharacterGenerationState } from '../../../../../../characterCreation.types';
-import StandardTraits from '../../../../Class/components/classes/StandardTraits/StandardTraits';
 
 export interface IRacialTraitsProps {
   characterState: ICharacterGenerationState;
@@ -8,15 +7,11 @@ export interface IRacialTraitsProps {
 
 export default function RacialTraits(props: IRacialTraitsProps) {
   const { characterState } = props;
-  const { race, characterRaceTraits } = characterState;
-
-  const { standardTraits = [] } = characterState.characterRaceTraits || {};
-  console.log('characterRaceTraits', characterRaceTraits);
+  const { race } = characterState;
 
   return race ? (
-    //  return characterRaceTraits ? (
     <div>
-      <h4 className="text-left">Standard Traits </h4>
+      <h4 className="text-left">Standard Traits</h4>
       <div>
         <p className="text-left">
           <strong>Ability Scores:</strong>{' '}
@@ -34,6 +29,16 @@ export default function RacialTraits(props: IRacialTraitsProps) {
         <p className="text-left">
           <strong>Languages:</strong>
         </p>
+      </div>
+      <h4 className="text-left">Racial Traits</h4>
+      <div>
+        {characterState.characterRaceTraits?.racialTraits.map((racialTrait) => {
+          return (
+            <p className="text-left">
+              <strong>{racialTrait.label}</strong>:{racialTrait.description}
+            </p>
+          );
+        })}
       </div>
     </div>
   ) : null;

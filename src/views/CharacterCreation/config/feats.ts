@@ -40,6 +40,8 @@ export const FEATS: Feats = {
     description:
       'Use your Dex bonus when calculating your Combat Manuever Bonus',
     type: 'combat',
+    /*
+    example
     bonus: {
       combat: {
         offense: {
@@ -49,22 +51,11 @@ export const FEATS: Feats = {
           ac: -1,
         },
       },
-      skill: {},
+      skill: {
+        acrobatics: 2,
+      },
     },
-    // bonus: {
-    //   combat: {
-    //     offense: {
-    //       melee: -1
-    //     },
-    //     defense: {
-    //       ac: 1
-    //     }
-    //   },
-    //   skill: {
-    //     ACROBATICS: 2
-    //     FLY_CHECKS: 2
-    //   }
-    // }
+    */
   },
   ARCANE_STRIKE: {
     label: 'Arcane Strike',
@@ -88,7 +79,7 @@ export const FEATS: Feats = {
     type: 'skill',
     bonus: {
       skill: {
-        [CLASS_SKILLS.ACROBATICS.label]: 2,
+        acrobatics: 2,
       },
     },
   },
@@ -96,11 +87,23 @@ export const FEATS: Feats = {
     label: 'Alertness',
     description: '+2 to Perception and Sense Motive Checks',
     type: 'skill',
+    bonus: {
+      skill: {
+        perception: 2,
+        sense_motive: 2,
+      },
+    },
   },
   ANIMAL_AFFINITY: {
     label: 'Animal Affinity',
     description: '+2 to Perception and Sense Motive Checks',
     type: 'skill',
+    bonus: {
+      skill: {
+        handle_animal: 2,
+        ride: 2,
+      },
+    },
   },
   ATHLETIC: {
     label: 'Athletic',
