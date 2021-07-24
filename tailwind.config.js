@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 // const colors = {
 //   "teal-darkest": "#0d3331",
@@ -27,7 +28,13 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ['Titillium Web', 'Helvetica', 'Arial', 'sans-serif'],
+      sans: [
+        '"Titillium Web"',
+        'Helvetica',
+        'Arial',
+        'sans-serif',
+        ...defaultTheme.fontFamily.sans,
+      ],
     },
   },
   variants: {

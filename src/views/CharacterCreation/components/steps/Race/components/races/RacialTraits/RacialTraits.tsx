@@ -19,22 +19,28 @@ export default function RacialTraits(props: IRacialTraitsProps) {
             .description || ''}
         </p>
         <p className="text-left">
-          <strong>Size:</strong>
+          <strong>Size:</strong>{' '}
           {characterState.characterRaceTraits?.standardTraits.size || ''}
         </p>
         <p className="text-left">
-          <strong>Speed:</strong>
+          <strong>Speed:</strong>{' '}
           {characterState.characterRaceTraits?.standardTraits.speed || 0} ft
         </p>
         <p className="text-left">
-          <strong>Languages:</strong>
+          <strong>Languages:</strong>{' '}
+          {characterState.characterRaceTraits?.standardTraits.languages.map(
+            (language, index, array) => {
+              let separator = index == array.length - 1 ? '' : ', ';
+              return language + separator;
+            }
+          )}
         </p>
       </div>
       <h4 className="text-left">Racial Traits</h4>
       <div>
         {characterState.characterRaceTraits?.racialTraits.map((racialTrait) => {
           return (
-            <p className="text-left">
+            <p className="text-left" key={racialTrait.label}>
               <strong>{racialTrait.label}</strong>:{racialTrait.description}
             </p>
           );

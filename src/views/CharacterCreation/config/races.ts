@@ -115,6 +115,7 @@ export type RaceTraits = {
     };
     size: Size;
     speed: number;
+    languages: string[];
   };
   racialTraits: {
     label: string;
@@ -133,6 +134,7 @@ export const races: Races = {
       },
       size: 'Medium',
       speed: 30,
+      languages: ['common'],
     },
     racialTraits: [RACIAL_TRAITS.BONUS_FEAT, RACIAL_TRAITS.SKILLED],
   },
@@ -144,6 +146,7 @@ export const races: Races = {
       },
       size: 'Medium',
       speed: 30,
+      languages: ['common', 'elven'],
     },
     racialTraits: [
       RACIAL_TRAITS.ELVEN_IMMUNITIES,
@@ -159,6 +162,7 @@ export const races: Races = {
       },
       size: 'Medium',
       speed: 30,
+      languages: ['common', 'elven'],
     },
     racialTraits: [
       RACIAL_TRAITS.ELVEN_IMMUNITIES,
@@ -176,6 +180,7 @@ export const races: Races = {
       },
       size: 'Medium',
       speed: 30,
+      languages: ['common', 'orc'],
     },
     racialTraits: [
       RACIAL_TRAITS.INTIMIDATING,
@@ -191,6 +196,7 @@ export const races: Races = {
       },
       size: 'Medium',
       speed: 20,
+      languages: ['common', 'dwarven'],
     },
     racialTraits: [
       RACIAL_TRAITS.DEFENSIVE_TRAINING,
@@ -210,6 +216,7 @@ export const races: Races = {
       },
       size: 'Small',
       speed: 20,
+      languages: ['common', 'halfling'],
     },
     racialTraits: [
       RACIAL_TRAITS.HALFLING_LUCK,

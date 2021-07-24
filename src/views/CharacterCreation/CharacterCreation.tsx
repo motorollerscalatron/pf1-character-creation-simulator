@@ -139,6 +139,10 @@ export default function CharacterCreation(props: ICharacterCreationProps) {
           alert('You have spent too many points on your abilities!');
           return;
         }
+        case 3: {
+          alert('Please complete all the fields!');
+          return;
+        }
         default: {
           break;
         }
