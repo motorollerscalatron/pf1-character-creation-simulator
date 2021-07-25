@@ -8,6 +8,7 @@ import { CharacterClassMap } from './Class.types';
 import * as characterClasses from './components/classes';
 import { classes } from '../../../config/classes';
 import StandardTraits from './components/classes/StandardTraits/StandardTraits';
+import ClassSpecificOptions from './components/classes/ClassSpecificOptions/ClassSpecificOptions';
 
 const characterClassMap: Omit<CharacterClassMap, ''> = {
   Fighter: characterClasses.Fighter,
@@ -150,6 +151,12 @@ export default function CharacterClasses(props: ICharacterClassProps) {
       ) : null}
       <div>
         <StandardTraits characterState={characterState} />
+      </div>
+      <div>
+        <ClassSpecificOptions
+          characterState={characterState}
+          updateCharacterState={updateCharacterState}
+        />
       </div>
     </div>
   );

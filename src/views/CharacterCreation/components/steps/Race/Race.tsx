@@ -108,7 +108,7 @@ export default function CharacterRace(props: ICharacterRaceProps) {
                 checked={characterState.race === 'Half-Elf'}
                 onChange={(e) => setRaceChoice('Half-Elf')}
               />
-              <label htmlFor="select-race-half-elf">Half-elf</label>
+              <label htmlFor="select-race-half-elf">Half-Elf</label>
             </div>
 
             <div>
