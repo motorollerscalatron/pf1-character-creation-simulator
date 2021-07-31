@@ -21,6 +21,7 @@ import { raceStepValidator } from './components/steps/Race/raceStepValidator';
 import { updateOffense, updateDefense } from './service/characterStateService';
 import { classStepValidator } from './components/steps/Class/classStepValidator';
 import { skillStepValidator } from './components/steps/Skills/skillStepValidator';
+import { featsStepValidator } from './components/steps/Feats/featsStepValidator';
 
 const { useState } = React;
 export interface ICharacterCreationProps {}
@@ -36,8 +37,8 @@ const componentsMap: ComponentsMap = {
   4: Class,
   5: Skills,
   6: Feats,
-  /*
   7: Equipment,
+  /*
   8: Details,
   */
 };
@@ -52,6 +53,7 @@ const stepValidators: StepValidators = {
   3: raceStepValidator,
   4: classStepValidator,
   5: skillStepValidator,
+  6: featsStepValidator,
 };
 
 const initialState: ICharacterGenerationState = {
@@ -102,6 +104,7 @@ const initialState: ICharacterGenerationState = {
   skillPoints: 0,
   characterTrainedSkills: {},
   characterFeats: {},
+  equipment: {},
 };
 
 localStorage.setItem('pointsSpent', '0');
@@ -112,7 +115,17 @@ export default function CharacterCreation(props: ICharacterCreationProps) {
 
   const updateCharacterState: UpdateCharacterState = (fn) => {
     setCharacterState((draft) => {
+      const { race: currentRace, characterClass: currentCharacterClass } =
+        draft;
       fn(draft);
+      const { race: nextRace, characterClass: nextCharacterClass } = draft;
+
+      if (
+        currentRace !== nextRace ||
+        currentCharacterClass !== nextCharacterClass
+      ) {
+        draft.characterFeats = {};
+      }
       updateOffense(draft);
       updateDefense(draft);
     });

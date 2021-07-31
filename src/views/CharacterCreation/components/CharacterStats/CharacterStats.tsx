@@ -63,10 +63,10 @@ export default function CharacterStats(props: ICharacterStatsProps) {
 
   const previewFeats: string[] = Object.entries(characterFeats)
     .filter((characterFeat) => {
-      return characterFeat[1];
+      return characterFeat[1]?.checked;
     })
     .map((characterFeat) => {
-      return characterFeat[0];
+      return characterFeat[1]?.label || '';
     });
 
   return (

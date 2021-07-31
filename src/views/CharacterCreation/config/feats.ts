@@ -36,7 +36,7 @@ export type Feats = Record<Feat, FeatValue>;
 
 export const FEATS: Feats = {
   AGILE_MANUVERS: {
-    label: 'Agile Manuvers',
+    label: 'Agile Manuevers',
     description:
       'Use your Dex bonus when calculating your Combat Manuever Bonus',
     type: 'combat',
