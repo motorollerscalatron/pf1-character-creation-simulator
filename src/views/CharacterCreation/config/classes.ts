@@ -398,6 +398,7 @@ export type ClassTraits = {
   skillPoints: number;
   classSkills: SkillValue[];
   deity?: Deity;
+  wealth: number;
 };
 
 type Classes = Record<Lowercase<CharacterClass>, ClassTraits>;
@@ -433,6 +434,7 @@ export const classes: Classes = {
       CLASS_SKILLS.SURVIVAL,
       CLASS_SKILLS.SWIM,
     ],
+    wealth: 175,
   },
   rogue: {
     bonusStats: {
@@ -470,6 +472,7 @@ export const classes: Classes = {
       CLASS_SKILLS.SWIM,
       CLASS_SKILLS.USE_MAGIC_DEVICE,
     ],
+    wealth: 140,
   },
   paladin: {
     bonusStats: {
@@ -504,6 +507,7 @@ export const classes: Classes = {
       CLASS_SKILLS.SENSE_MOTIVE,
       CLASS_SKILLS.SPELLCRAFT,
     ],
+    wealth: 140,
   },
   cleric: {
     bonusStats: {
@@ -538,6 +542,7 @@ export const classes: Classes = {
       CLASS_SKILLS.PROFESSION,
       CLASS_SKILLS.SENSE_MOTIVE,
     ],
+    wealth: 175,
   },
   sorcerer: {
     bonusStats: {
@@ -567,6 +572,7 @@ export const classes: Classes = {
       CLASS_SKILLS.SPELLCRAFT,
       CLASS_SKILLS.USE_MAGIC_DEVICE,
     ],
+    wealth: 140,
   },
   wizard: {
     bonusStats: {
@@ -599,5 +605,6 @@ export const classes: Classes = {
       CLASS_SKILLS.PROFESSION,
       CLASS_SKILLS.SENSE_MOTIVE,
     ],
+    wealth: 70,
   },
 };

@@ -1,5 +1,7 @@
 import type { ClassTraits, Skill } from './config/classes';
+import type { Feat, FeatValue } from './config/feats';
 import type { RaceTraits } from './config/races';
+import type { EquipmentValue } from './config/equipment';
 
 export type UpdateCharacterState = (
   fn: (draft: ICharacterGenerationState) => void
@@ -63,7 +65,8 @@ export type BonusAbilityScore = {
   value: number;
   mod: number;
 };
-
+export type EquipmentType = 'weapon' | 'armor' | 'shield';
+export type SelectedEquipment = Record<EquipmentType, EquipmentValue>;
 export type FavouredClassBonus = 'hp' | 'skill';
 export type Languages = Omit<Record<Race, string[]>, ''>;
 export type CharacterClassTrait = Record<string, string>;
@@ -88,6 +91,8 @@ export interface ICharacterGenerationState {
   favouredClassBonus: FavouredClassBonus | '';
   skillPoints: number;
   characterTrainedSkills: Partial<Record<Skill, boolean>>;
+  characterFeats: Partial<Record<Feat, FeatValue & { checked: boolean }>>;
+  equipment: Partial<SelectedEquipment>;
 }
 
 type Character = Omit<ICharacterGenerationState, 'campaignType'>;

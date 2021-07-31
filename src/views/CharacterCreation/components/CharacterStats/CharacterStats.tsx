@@ -1,14 +1,11 @@
 import React from 'react';
 import {
-  Abilities,
-  Ability,
   AbilityLower,
   AbilityValue,
   BonusAbilityScore,
   ICharacterGenerationState,
 } from '../../characterCreation.types';
 import styles from './CharacterStats.module.css';
-import { calculateHealthPoints } from './helpers/abilities';
 import clsx from 'clsx';
 import { AbilityPreview } from './components/AbilityPreview';
 import { capitalize } from '../../../../helpers';
@@ -33,7 +30,13 @@ const withBonusAbilityScore = (
 
 export default function CharacterStats(props: ICharacterStatsProps) {
   const { characterState } = props;
-  const { abilities, bonusAbilityScore, characterClassTraits } = characterState;
+  const {
+    abilities,
+    bonusAbilityScore,
+    characterClassTraits,
+    characterRaceTraits,
+    characterFeats,
+  } = characterState;
 
   const previewAbilities: [string, AbilityValue][] = Object.entries(
     abilities
@@ -48,19 +51,22 @@ export default function CharacterStats(props: ICharacterStatsProps) {
     ];
   });
 
-  console.log(
-    'class traits in CharacterStats',
-    characterClassTraits?.classTraits
-  );
-  // const previewClassTraits: [string, string][] = [
-
-  //   ['', ''],
-  //   ['', ''],
-  // ];
+  const previewRacialTraits: [string, string][] | undefined =
+    characterRaceTraits?.racialTraits.map(({ label, description }) => {
+      return [label, description];
+    });
 
   const previewClassTraits: [string, string][] | undefined =
     characterClassTraits?.classTraits.map(({ label, description }) => {
       return [label, description];
+    });
+
+  const previewFeats: string[] = Object.entries(characterFeats)
+    .filter((characterFeat) => {
+      return characterFeat[1]?.checked;
+    })
+    .map((characterFeat) => {
+      return characterFeat[1]?.label || '';
     });
 
   return (
@@ -134,7 +140,11 @@ export default function CharacterStats(props: ICharacterStatsProps) {
           })}
         </div>
         <h5 className={styles.abilityHeader}>Racial traits</h5>
-        <div className={clsx(styles.previewAbilities)}></div>
+        <div className={clsx(styles.previewAbilities)}>
+          {previewRacialTraits?.map(([label, desc]) => {
+            return <p key={label}>{label}, </p>;
+          })}
+        </div>
         <h5 className={styles.abilityHeader}>Class Traits</h5>
         <div className={clsx(styles.previewAbilities)}>
           {previewClassTraits?.map(([label, desc]) => {
@@ -142,6 +152,11 @@ export default function CharacterStats(props: ICharacterStatsProps) {
           })}
         </div>
         <h5 className={styles.abilityHeader}>Feats</h5>
+        <div className={clsx(styles.previewAbilities)}>
+          {previewFeats?.map((previewFeat) => {
+            return <p key={previewFeat}>{previewFeat}</p>;
+          })}
+        </div>
       </div>
     </div>
   );

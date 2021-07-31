@@ -29,7 +29,7 @@ const abilityMap: AbilityMap = {
 export default function CharacterSkills(props: ICharacterSkillsProps) {
   const class_skills = Object.entries(CLASS_SKILLS) as [Skill, SkillValue][];
   const { characterState, updateCharacterState } = props;
-  const { characterClassTraits } = characterState;
+  const { characterClassTraits, characterFeats } = characterState;
   const maxSkillPoints = characterState.characterClassTraits?.skillPoints || 0;
 
   const onChangeSkillTrained = (
@@ -42,6 +42,7 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
     });
     // skill.trained = !skill.trained;
   };
+  console.log('characterFeats in skills', characterFeats);
 
   const numOfSelectedSkills = Object.entries(
     characterState.characterTrainedSkills
@@ -49,8 +50,6 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
     const [skill, isTrained] = item as [Skill, boolean];
     return isTrained;
   }).length;
-  console.log('trained skills num', numOfSelectedSkills, 'max', maxSkillPoints);
-  console.log('characterState in skills', characterState);
   return (
     <div>
       <div className="content">
@@ -65,6 +64,7 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
               <th>Ability</th>
               <th>Mod</th>
               <th>Trained?</th>
+              <th>Total</th>
             </tr>
           </thead>
           <tbody>
@@ -74,28 +74,27 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
               const abilityKey = abilityMap[abilityType];
               const { mod: defaultMod } = abilities[abilityKey];
 
-              /*
-                Find an object where ability == abilityKey
-                Then, if found, get the mod
-                Otherwise, default to 0
-              */
+              const bonusFromFeats = 0;
               const bonusAbilityMod =
                 bonusAbilityScore.find(
                   (bonusAbility) => bonusAbility.ability == abilityKey
                 )?.mod || 0;
               const modSum = defaultMod + bonusAbilityMod;
+              const isClassSkill = characterClassTraits?.classSkills.find(
+                (classSkill) =>
+                  classSkill.isClassSkill && classSkill.label === label
+              );
 
+              const classSkillTotalBonus = isClassSkill ? 3 : 0;
+              const trained = characterState.characterTrainedSkills[skill]
+                ? 1 + classSkillTotalBonus
+                : 0;
+              const total = modSum + trained;
+              console.log(index, index);
               return (
                 <tr key={index}>
                   <td>{label}</td>
-                  <td>
-                    {characterClassTraits?.classSkills.find(
-                      (classSkill) =>
-                        classSkill.isClassSkill && classSkill.label === label
-                    )
-                      ? 'Class Skill'
-                      : ''}
-                  </td>
+                  <td>{isClassSkill ? 'Class Skill' : ''}</td>
                   <td>{abilityType}</td>
                   <td>{Math.sign(modSum) > 0 ? `+${modSum}` : modSum}</td>
                   <td>
@@ -109,6 +108,7 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
                       onChange={(e) => onChangeSkillTrained(e, skill)}
                     ></input>
                   </td>
+                  <td>{total}</td>
                 </tr>
               );
             })}

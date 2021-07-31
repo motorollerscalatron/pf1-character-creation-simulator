@@ -51,7 +51,6 @@ export default function CharacterRace(props: ICharacterRaceProps) {
   const { characterState, updateCharacterState } = props;
   const { race } = characterState;
   type RaceType = typeof race;
-  //  const lowerCaseRace = race.toLowerCase() as Lowercase<RaceType>;
 
   const setRaceChoice = (race: RaceType) => {
     updateCharacterState((draft) => {
@@ -109,7 +108,7 @@ export default function CharacterRace(props: ICharacterRaceProps) {
                 checked={characterState.race === 'Half-Elf'}
                 onChange={(e) => setRaceChoice('Half-Elf')}
               />
-              <label htmlFor="select-race-half-elf">Half-elf</label>
+              <label htmlFor="select-race-half-elf">Half-Elf</label>
             </div>
 
             <div>
