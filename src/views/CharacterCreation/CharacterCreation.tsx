@@ -22,6 +22,7 @@ import { updateOffense, updateDefense } from './service/characterStateService';
 import { classStepValidator } from './components/steps/Class/classStepValidator';
 import { skillStepValidator } from './components/steps/Skills/skillStepValidator';
 import { featsStepValidator } from './components/steps/Feats/featsStepValidator';
+import { equipmentValidator } from './components/steps/Equipment/equipmentValidator';
 
 const { useState } = React;
 export interface ICharacterCreationProps {}
@@ -54,6 +55,7 @@ const stepValidators: StepValidators = {
   4: classStepValidator,
   5: skillStepValidator,
   6: featsStepValidator,
+  7: equipmentValidator,
 };
 
 const initialState: ICharacterGenerationState = {

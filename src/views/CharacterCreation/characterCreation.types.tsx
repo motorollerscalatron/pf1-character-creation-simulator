@@ -66,7 +66,9 @@ export type BonusAbilityScore = {
   mod: number;
 };
 export type EquipmentType = 'weapon' | 'armor' | 'shield';
+
 export type SelectedEquipment = Record<EquipmentType, EquipmentValue>;
+
 export type FavouredClassBonus = 'hp' | 'skill';
 export type Languages = Omit<Record<Race, string[]>, ''>;
 export type CharacterClassTrait = Record<string, string>;
