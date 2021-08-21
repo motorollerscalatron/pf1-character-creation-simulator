@@ -4,7 +4,8 @@ import type { RaceTraits } from './config/races';
 import type { EquipmentValue } from './config/equipment';
 
 export type UpdateCharacterState = (
-  fn: (draft: ICharacterGenerationState) => void
+  fn: (draft: ICharacterGenerationState) => void,
+  override?: boolean
 ) => void;
 
 export type Ability =

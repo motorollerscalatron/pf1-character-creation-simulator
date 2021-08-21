@@ -39,9 +39,7 @@ const componentsMap: ComponentsMap = {
   5: Skills,
   6: Feats,
   7: Equipment,
-  /*
   8: Details,
-  */
 };
 
 type StepValidators = {
@@ -115,13 +113,15 @@ export default function CharacterCreation(props: ICharacterCreationProps) {
   const { step, nextStep, prevStep, setStep } = useStepper(1, 8);
   const [characterState, setCharacterState] = useImmer(initialState);
 
-  const updateCharacterState: UpdateCharacterState = (fn) => {
+  const updateCharacterState: UpdateCharacterState = (fn, override = false) => {
     setCharacterState((draft) => {
+      if (override) return fn(draft);
       const { race: currentRace, characterClass: currentCharacterClass } =
         draft;
       fn(draft);
       const { race: nextRace, characterClass: nextCharacterClass } = draft;
 
+      // feats depends on race/class selection
       if (
         currentRace !== nextRace ||
         currentCharacterClass !== nextCharacterClass

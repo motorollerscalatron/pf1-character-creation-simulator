@@ -77,6 +77,7 @@ export default function CharacterClasses(props: ICharacterClassProps) {
           {allCharacterClasses.map((characterClass) => {
             return (
               <InputCard
+                key={characterClass}
                 checked={characterState.characterClass === characterClass}
                 onSelect={(e) => setCharacterClassChoice(characterClass)}
                 label={characterClass}
