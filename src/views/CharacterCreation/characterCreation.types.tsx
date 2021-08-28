@@ -4,7 +4,8 @@ import type { RaceTraits } from './config/races';
 import type { EquipmentValue } from './config/equipment';
 
 export type UpdateCharacterState = (
-  fn: (draft: ICharacterGenerationState) => void
+  fn: (draft: ICharacterGenerationState) => void,
+  override?: boolean
 ) => void;
 
 export type Ability =
@@ -66,7 +67,9 @@ export type BonusAbilityScore = {
   mod: number;
 };
 export type EquipmentType = 'weapon' | 'armor' | 'shield';
+
 export type SelectedEquipment = Record<EquipmentType, EquipmentValue>;
+
 export type FavouredClassBonus = 'hp' | 'skill';
 export type Languages = Omit<Record<Race, string[]>, ''>;
 export type CharacterClassTrait = Record<string, string>;

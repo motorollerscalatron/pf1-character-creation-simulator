@@ -90,7 +90,6 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
                 ? 1 + classSkillTotalBonus
                 : 0;
               const total = modSum + trained;
-              console.log(index, index);
               return (
                 <tr key={index}>
                   <td>{label}</td>
@@ -100,7 +99,7 @@ export default function CharacterSkills(props: ICharacterSkillsProps) {
                   <td>
                     <input
                       type="checkbox"
-                      checked={characterState.characterTrainedSkills[skill]}
+                      checked={!!characterState.characterTrainedSkills[skill]}
                       disabled={
                         !characterState.characterTrainedSkills[skill] &&
                         numOfSelectedSkills >= maxSkillPoints

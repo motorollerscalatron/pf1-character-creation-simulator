@@ -50,4 +50,18 @@ export const EQUIPMENT: Equipment = {
     type: 'light-armor',
     allowed_classes: ['Fighter', 'Paladin', 'Rogue', 'Cleric'],
   },
+  5: {
+    id: '5',
+    name: 'Short Sword',
+    price: 10,
+    type: 'sword',
+    allowed_classes: ['Fighter', 'Paladin', 'Rogue'],
+  },
+  6: {
+    id: '6',
+    name: 'War Hammer',
+    price: 10,
+    type: 'staff',
+    allowed_classes: ['Fighter', 'Paladin', 'Rogue', 'Cleric'],
+  },
 };

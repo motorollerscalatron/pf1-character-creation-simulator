@@ -9,6 +9,7 @@ import * as characterClasses from './components/classes';
 import { classes } from '../../../config/classes';
 import StandardTraits from './components/classes/StandardTraits/StandardTraits';
 import ClassSpecificOptions from './components/classes/ClassSpecificOptions/ClassSpecificOptions';
+import InputCard from '@/components/common/InputCard';
 
 const characterClassMap: Omit<CharacterClassMap, ''> = {
   Fighter: characterClasses.Fighter,
@@ -23,6 +24,15 @@ export interface ICharacterClassProps {
   characterState: ICharacterGenerationState;
   updateCharacterState: UpdateCharacterState;
 }
+
+const allCharacterClasses: CharacterClass[] = [
+  'Fighter',
+  'Rogue',
+  'Paladin',
+  'Cleric',
+  'Sorcerer',
+  'Wizard',
+];
 
 export default function CharacterClasses(props: ICharacterClassProps) {
   const { characterState, updateCharacterState } = props;
@@ -64,6 +74,26 @@ export default function CharacterClasses(props: ICharacterClassProps) {
       </div>
       <div className="radio-toolbar select-race content">
         <div className="grid grid-cols-3 gap-4">
+          {allCharacterClasses.map((characterClass) => {
+            return (
+              <InputCard
+                key={characterClass}
+                checked={characterState.characterClass === characterClass}
+                onSelect={(e) => setCharacterClassChoice(characterClass)}
+                label={characterClass}
+                inputProps={{
+                  type: 'radio',
+                  name: 'characterClass',
+                  id: characterClass,
+                }}
+                labelProps={{
+                  htmlFor: 'select-character-class-fighter',
+                }}
+              />
+            );
+          })}
+
+          {/*
           <div>
             <input
               className="radio-button hidden"
@@ -141,8 +171,10 @@ export default function CharacterClasses(props: ICharacterClassProps) {
             />
             <label htmlFor="select-character-class-wizard">Wizard</label>
           </div>
+                */}
         </div>
       </div>
+
       {SelectedClassContent ? (
         <SelectedClassContent
           characterState={characterState}

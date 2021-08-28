@@ -12,6 +12,16 @@ export interface ICharacterNameProps {
 type Gender = 'Male' | 'Female' | 'Other';
 type Name = '';
 
+async function fileToJSON(file: File) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.onload = (event: ProgressEvent<FileReader>) =>
+      resolve(JSON.parse(event?.target?.result as string));
+    fileReader.onerror = (error) => reject(error);
+    fileReader.readAsText(file);
+  });
+}
+
 export default function CharacterName(props: ICharacterNameProps) {
   const { characterState, updateCharacterState } = props;
 
@@ -23,8 +33,43 @@ export default function CharacterName(props: ICharacterNameProps) {
     });
   };
 
+  const loadCharacterStateFromJson = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    console.log('load', e, e.currentTarget.files);
+    const file = e.currentTarget.files?.[0];
+    type LoaderCharacterState = ICharacterGenerationState & {
+      bonusLanguage: Record<string, boolean>;
+    };
+    if (!file) return;
+    const characterState = (await fileToJSON(file)) as LoaderCharacterState;
+    console.log(characterState);
+
+    const bonusLanguage: Map<string, boolean> = new Map();
+
+    for (const [language, value] of Object.entries(
+      characterState.bonusLanguage
+    )) {
+      bonusLanguage.set(language, value);
+    }
+    updateCharacterState((draft) => {
+      // Make sure that bonusLanguage is a Map instance before loading the state
+      // When the state is saved, the Map is converted to an object, so we have to
+      // convert the object back to a Map
+      Object.assign(draft, {
+        ...characterState,
+        bonusLanguage,
+      });
+    }, true);
+  };
+
   return (
     <div>
+      <div>
+        <input type="file" onChange={loadCharacterStateFromJson} />
+        load
+      </div>
+
       <div className="text-2xl mb-6 font-bold text-red-900">Character Name</div>
       <div>
         What is your character's gender?
